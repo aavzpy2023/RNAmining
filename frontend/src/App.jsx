@@ -7,6 +7,7 @@ import { OrganismCard } from './components/OrganismCard';
 // Importación de las páginas desacopladas
 import About from './pages/About';
 import Contact from './pages/Contact';
+import Tutorial from './pages/Tutorial';
 
 // ==========================================
 // MOCK HOOKS (Para pruebas locales)
@@ -63,7 +64,7 @@ const Navbar = ({ currentView, setView }) => (
   <nav style={styles.navLinks}>
   <button onClick={() => setView('run')} style={currentView === 'run' ? styles.navLinkActive : styles.navLink}>Run</button>
   <button onClick={() => setView('about')} style={currentView === 'about' ? styles.navLinkActive : styles.navLink}>About</button>
-  <a href="#" style={styles.navLink}>Tutorial</a>
+  <button onClick={() => setView('tutorial')} style={currentView === 'tutorial' ? styles.navLinkActive : styles.navLink}>Tutorial</button>
   <a href="#" style={styles.navLink}>Download</a>
   <button onClick={() => setView('contact')} style={currentView === 'contact' ? styles.navLinkActive : styles.navLink}>Contact</button>
   </nav>
@@ -89,7 +90,7 @@ const RunSection = ({ isRunning, disabled, onClick }) => (
 const Footer = () => (
   <footer style={styles.footer}>
   <p style={{ fontSize: '12px', color: '#64748b', margin: 0, textTransform: 'uppercase' }}>
-  Copyright © 2024 Laboratory of Integrative Bioinformatics - University of Chile
+  Copyright © 2026 Laboratory of Integrative Bioinformatics - University of Chile
   </p>
   </footer>
 );
@@ -164,6 +165,8 @@ function App() {
       )}
 
       {currentView === 'about' && <About />}
+
+      {currentView === 'tutorial' && <Tutorial />}
 
       {currentView === 'contact' && <Contact />}
       </main>
