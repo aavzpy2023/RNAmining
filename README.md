@@ -11,8 +11,12 @@ architectures.
 ## 🏗️ Technical Architecture
 
 The project follows a **Vertical Slice Architecture** with **Hexagonal 
-Boundaries**, ensuring total isolation between the bioinformatic parsing 
-engine and the web delivery layers.
+Boundaries**, orchestrated via **Docker Compose** for high-availability 
+environments.
+
+### 🌐 Proxy & Orchestration
+- **Gateway:** Nginx (Port 80) acting as a Reverse Proxy.
+- **Service Discovery:** Internal container networking (backend:8000, frontend:5173).
 
 - **Backend:** FastAPI 0.110+, Python 3.11+
 - **ML Engine:** Scikit-Learn (XGBoost Optimized) via Joblib persistence.
@@ -32,15 +36,16 @@ engine and the web delivery layers.
 └── leai_docs/              # Agentic Planning & Roadmaps
 ```
 
-## 🚀 Quick Start
+## 🚀 Quick Start (Dockerized)
 
-### Backend Setup
+Ensure you have **Docker** and **Docker Compose** installed.
+
 ```bash
-cd backend
-# Using uv (recommended) or pip
-pip install -r pyproject.toml
-uvicorn main:app --reload
+# Build and start all services (Backend, Frontend, Nginx)
+docker-compose up --build
 ```
+
+The application will be available at `http://localhost`.
 
 ### Frontend Setup
 ```bash

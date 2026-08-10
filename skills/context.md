@@ -1,6 +1,8 @@
 # RNA Mining: Global Context
 
 ## Architecture Overview
+- Orchestration: Docker Compose (Nginx + Frontend + Backend).
+- Proxy: Nginx Reverse Proxy as Global Entrypoint (Port 80).
 - Backend: FastAPI (Hexagonal/Vertical Slice).
 - ML Pipeline: Scikit-learn + Joblib for model persistence.
 - Data: Biopython for FASTA/FASTQ parsing.
