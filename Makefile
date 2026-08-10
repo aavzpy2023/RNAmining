@@ -14,3 +14,7 @@ build:
 
 logs:
 	docker compose logs -f
+
+
+audit:
+	pytest

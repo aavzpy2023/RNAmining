@@ -217,3 +217,10 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 _scripts/
+
+.python-version
+SKARCH_content.txt
+SKARCH_tree.txt
+SKDEV_content.txt
+SKDEV_tree.txt
+
