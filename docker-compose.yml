@@ -1,0 +1,30 @@
+services:
+
+  backend:
+    container_name: rna_mining-backend
+    build: ./backend
+    expose:
+      - "8000"
+    volumes:
+      - ./backend:/app
+    environment:
+      - PYTHONDONTWRITEBYTECODE=1
+      - PYTHONUNBUFFERED=1
+
+  frontend:
+    container_name: rna_mining-frontend
+    build: ./frontend
+    expose:
+      - "5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+
+  nginx:
+    container_name: rna_mining-nginx
+    build: ./nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - frontend
+      - backend
