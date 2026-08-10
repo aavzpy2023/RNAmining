@@ -1,16 +1,8 @@
 import { useState, useCallback, useEffect } from 'react';
 
-export const DEFAULT_ORGANISMS = [
-  'Homo sapiens',
-  'Arabidopsis thaliana',
-  'Escherichia coli',
-  'Saccharomyces cerevisiae',
-  'Drosophila melanogaster',
-];
-
-export function useOrganismSelect(initialOrganism = 'Homo sapiens') {
+export function useOrganismSelect(initialOrganism = '') {
     const [selectedOrganism, setOrganism] = useState(initialOrganism);
-    const [organismOptions, setOptions] = useState(DEFAULT_ORGANISMS);
+    const [organismOptions, setOptions] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
@@ -25,7 +17,7 @@ export function useOrganismSelect(initialOrganism = 'Homo sapiens') {
                     setOrganism(data.models[0]);
                 }
             } catch (error) {
-                console.error("Failed to fetch models, using defaults:", error);
+                console.error("Failed to fetch models:", error);
             } finally {
                 setIsLoading(false);
             }

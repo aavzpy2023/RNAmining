@@ -24,8 +24,15 @@ app = FastAPI(lifespan=lifespan)
 @app.get("/api/v1/models")
 def get_models():
     """Scans the models directory and returns available model names."""
-    model_dir = Path("backend/app/models")
-    return {"models": [p.stem for p in model_dir.glob("*.pkl")]}
+    # Robust path resolution relative to this file
+    base_dir = Path(__file__).resolve().parent
+    model_dir = base_dir / "app" / "models"
+    
+    # Ensure directory exists to avoid errors
+    if not model_dir.exists():
+        return {"models": []}
+        
+    return {"models": sorted([p.stem for p in model_dir.glob("*.pkl")])}
 
 @app.get("/api/v1/fasta/sample", response_model=SampleFastaResponse)
 def get_sample_fasta():
