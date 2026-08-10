@@ -208,7 +208,7 @@ const TUTORIAL_DATA = {
             <p>The application is orchestrated using Docker Compose to ensure high availability and seamless deployment.</p>
             <h4 style={{ color: '#f8fafc', margin: '16px 0 8px 0' }}>Launch the System</h4>
             <p>Open a terminal in the root directory of the project and execute the following command to build and start the backend (FastAPI), frontend (React), and reverse proxy (Nginx) containers:</p>
-            <div style={styles.codeBlock}>make up</div>
+            <div style={styles.codeBlock}>docker compose up -d</div>
             <h4 style={{ color: '#f8fafc', margin: '16px 0 8px 0' }}>Access the Platform</h4>
             <p>Once the services are running, open your web browser and navigate to:</p>
             <div style={styles.codeBlock}>http://localhost</div>

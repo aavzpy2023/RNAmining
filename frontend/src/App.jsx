@@ -62,10 +62,12 @@ const Navbar = ({ currentView, setView }) => (
   <span className="material-symbols-outlined" style={{ color: '#38bdf8', fontWeight: 'bold' }}>biotech</span>
   <span style={{ fontSize: '22px', fontWeight: '700', color: '#38bdf8', letterSpacing: '-0.02em' }}>rnamining</span>
   </button>
+
+  {/* Menú reordenado por flujo UX */}
   <nav style={styles.navLinks}>
   <button onClick={() => setView('run')} style={currentView === 'run' ? styles.navLinkActive : styles.navLink}>Run</button>
-  <button onClick={() => setView('about')} style={currentView === 'about' ? styles.navLinkActive : styles.navLink}>About</button>
   <button onClick={() => setView('tutorial')} style={currentView === 'tutorial' ? styles.navLinkActive : styles.navLink}>Tutorial</button>
+  <button onClick={() => setView('about')} style={currentView === 'about' ? styles.navLinkActive : styles.navLink}>About</button>
   <button onClick={() => setView('download')} style={currentView === 'download' ? styles.navLinkActive : styles.navLink}>Download</button>
   <button onClick={() => setView('contact')} style={currentView === 'contact' ? styles.navLinkActive : styles.navLink}>Contact</button>
   </nav>
@@ -100,7 +102,15 @@ const Footer = () => (
 // COMPONENTE PRINCIPAL APP
 // ==========================================
 function App() {
-  const [currentView, setView] = useState('run');
+  // 1. Leemos la última vista guardada en memoria, o usamos 'run' por defecto
+  const [currentView, setView] = useState(() => {
+    return localStorage.getItem('currentTab') || 'run';
+  });
+
+  // 2. Cada vez que cambies de pestaña, la guardamos en la memoria del navegador
+  React.useEffect(() => {
+    localStorage.setItem('currentTab', currentView);
+  }, [currentView]);
   const fastaUpload = useFastaUpload();
   const organismSelect = useOrganismSelect();
   const analysisRunner = useAnalysisRunner();
