@@ -83,9 +83,13 @@ const styles = {
   navbar: { backgroundColor: '#1e293b', borderBottom: '1px solid #334155', padding: '12px 24px' },
   navContent: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', maxWidth: '1200px', margin: '0 auto' },
   navLinks: { display: 'flex', gap: '24px', alignItems: 'center' },
-  navLink: { color: '#f1f5f9', textDecoration: 'none', fontSize: '15px', fontWeight: '500', opacity: 0.8 },
-  navLinkActive: { color: '#38bdf8', textDecoration: 'none', fontSize: '15px', fontWeight: '600' },
+  navLink: { color: '#f1f5f9', textDecoration: 'none', fontSize: '15px', fontWeight: '500', opacity: 0.8, cursor: 'pointer', background: 'none', border: 'none', padding: 0 },
+  navLinkActive: { color: '#38bdf8', textDecoration: 'none', fontSize: '15px', fontWeight: '600', cursor: 'pointer', background: 'none', border: 'none', padding: 0 },
   footer: { backgroundColor: '#1e293b', borderTop: '1px solid #334155', padding: '16px', marginTop: 'auto', textAlign: 'center' },
+  aboutContent: { lineHeight: '1.6', color: '#94a3b8' },
+  aboutH2: { color: '#f8fafc', fontSize: '24px', marginTop: '32px', marginBottom: '16px', borderBottom: '1px solid #334155', paddingBottom: '8px' },
+  aboutList: { paddingLeft: '20px', margin: '16px 0' },
+  aboutListItem: { marginBottom: '12px' },
   hero: { textAlign: 'center', marginBottom: '24px' },
   heroH1: { fontSize: '32px', fontWeight: '700', color: '#f8fafc', margin: '0 0 8px 0' },
   heroP: { fontSize: '16px', color: '#94a3b8', margin: 0 },
@@ -115,16 +119,16 @@ const styles = {
 // UI COMPONENTS
 // ==========================================
 
-const Navbar = () => (
+const Navbar = ({ currentView, setView }) => (
   <header style={styles.navbar}>
   <div style={styles.navContent}>
-  <a href="#" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}>
+  <button onClick={() => setView('run')} style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', background: 'none', border: 'none', cursor: 'pointer' }}>
   <span className="material-symbols-outlined" style={{ color: '#38bdf8', fontWeight: 'bold' }}>biotech</span>
   <span style={{ fontSize: '22px', fontWeight: '700', color: '#38bdf8', letterSpacing: '-0.02em' }}>rnamining</span>
-  </a>
+  </button>
   <nav style={styles.navLinks}>
-  <a href="#" style={styles.navLinkActive}>Run</a>
-  <a href="#" style={styles.navLink}>About</a>
+  <button onClick={() => setView('run')} style={currentView === 'run' ? styles.navLinkActive : styles.navLink}>Run</button>
+  <button onClick={() => setView('about')} style={currentView === 'about' ? styles.navLinkActive : styles.navLink}>About</button>
   <a href="#" style={styles.navLink}>Tutorial</a>
   <a href="#" style={styles.navLink}>Download</a>
   <a href="#" style={styles.navLink}>Contact</a>
@@ -254,6 +258,7 @@ const Footer = () => (
 // ==========================================
 
 function App() {
+  const [currentView, setView] = useState('run');
   const fastaUpload = useFastaUpload();
   const organismSelect = useOrganismSelect();
   const analysisRunner = useAnalysisRunner();
@@ -284,9 +289,10 @@ function App() {
 
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 
-        <Navbar />
+        <Navbar currentView={currentView} setView={setView} />
 
         <main style={styles.container}>
+        {currentView === 'run' ? (
         <div style={{ width: '100%' }}>
         <section style={styles.hero}>
         <h1 style={styles.heroH1}>Run Analysis</h1>
@@ -332,6 +338,71 @@ function App() {
           </div>
         )}
         </div>
+        ) : (
+        <div style={{ width: '100%', maxWidth: '800px', margin: '0 auto' }}>
+        <section style={styles.hero}>
+        <h1 style={styles.heroH1}>About RNA Mining</h1>
+        <p style={styles.heroP}>Predicting Neural Coding Potential with High Precision</p>
+        </section>
+
+        <div style={styles.aboutContent}>
+        <p>
+        <strong>RNA Mining</strong> is a high-performance bioinformatics pipeline
+        designed for <strong>nucleotide coding potential prediction</strong> using
+        advanced Machine Learning architectures. The system enables researchers
+        to process FASTA sequences to determine coding or non-coding
+        characteristics with industry-leading accuracy.
+        </p>
+
+        <h2 style={styles.aboutH2}>Our Mission</h2>
+        <p>
+        To provide a robust, scalable tool that simplifies massive genomic analysis,
+        enabling ML model inference over real-time biological data streams.
+        </p>
+
+        <h2 style={styles.aboutH2}>Technical Architecture</h2>
+        <ul style={styles.aboutList}>
+        <li style={styles.aboutListItem}>
+        <strong>Vertical Slice Architecture:</strong> Designed with hexagonal boundaries
+        to decouple business logic from technical infrastructure.
+        </li>
+        <li style={styles.aboutListItem}>
+        <strong>Machine Learning Core:</strong> Optimized with <strong>XGBoost</strong>
+        (via Scikit-Learn) and Joblib persistence for efficient model loading.
+        </li>
+        <li style={styles.aboutListItem}>
+        <strong>Bioinformatic Processing:</strong> Powered by <strong>Biopython</strong>
+        for FASTA/FASTQ stream parsing, ensuring industry-standard data handling.
+        </li>
+        <li style={styles.aboutListItem}>
+        <strong>High-Speed Backend:</strong> Built with <strong>FastAPI</strong>
+        (Python 3.11+), leveraging dependency injection and asynchronous processing.
+        </li>
+        <li style={styles.aboutListItem}>
+        <strong>Modern Interface:</strong> Crafted with <strong>React 19 and Vite</strong>,
+        featuring a dark theme design system and decoupled state management.
+        </li>
+        </ul>
+
+        <h2 style={styles.aboutH2}>Key Features</h2>
+        <ul style={styles.aboutList}>
+        <li style={styles.aboutListItem}><strong>Multi-Organism Analysis:</strong> Dynamic parameter adjustment based on target species.</li>
+        <li style={styles.aboutListItem}><strong>Large File Handling:</strong> Multipart upload system transforming raw sequences into structured DTOs.</li>
+        <li style={styles.aboutListItem}><strong>High Availability Infrastructure:</strong> Full orchestration via <strong>Docker Compose</strong> with Nginx Reverse Proxy.</li>
+        <li style={styles.aboutListItem}><strong>Military-Grade Quality:</strong> Comprehensive test suite (Pytest) validating dependency integrity and biometric parser accuracy.</li>
+        </ul>
+
+        <h2 style={styles.aboutH2}>Credits & Development</h2>
+        <p>
+        Developed at the <strong>Laboratory of Integrative Bioinformatics - University of Chile</strong>.
+        </p>
+        <ul style={styles.aboutList}>
+        <li style={styles.aboutListItem}><strong>Lead Architect:</strong> Andrey Vinajera Zamora.</li>
+        <li style={styles.aboutListItem}><strong>Technologies:</strong> FastAPI, Scikit-Learn, Biopython, React, Docker.</li>
+        </ul>
+        </div>
+        </div>
+        )}
         </main>
 
         <Footer />
