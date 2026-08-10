@@ -18,3 +18,7 @@ logs:
 
 audit:
 	pytest
+
+
+audit-frontend:
+	npm --prefix frontend test

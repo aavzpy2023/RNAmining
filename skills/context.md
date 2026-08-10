@@ -15,3 +15,15 @@
 - `backend/app/samples/`: Datasets (coding.fasta, noncoding.fasta, edata.fasta).
 - `backend/conftest.py`: Configures PYTHONPATH for local test execution.
 - `leai_docs/planning/`: Source of truth for roadmap and backlog.
+
+## Frontend Structure & Design System
+- `frontend/src/components/`: Pure presentational UI components.
+- `frontend/src/hooks/`: Custom state management hooks decoupled from views.
+- Layout: Dark theme shell (`#0f172a` wrapper) with sticky footer and containers.
+- `useFastaUpload`: Custom hook managing file drag-drop, extension validation, and state.
+- `FastaUploadCard`: Pure view dropzone component bound to `useFastaUpload` hook handlers.
+- `useOrganismSelect`: Hook for managing selected organism species primitive state.
+- `OrganismCard`: Pure view dropdown component bound to `useOrganismSelect` handlers.
+- `runInferenceApi`: API client service posting FASTA bytes and organism to `/api/inference`.
+- `useAnalysisRunner`: Hook binding upload state, organism selection, and API response.
+- `RunButton`: Interactive execution button with loading and disabled states.

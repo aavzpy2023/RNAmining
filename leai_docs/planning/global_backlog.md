@@ -11,3 +11,10 @@
 
 - [x] [TECH-001] Baseline dependency provisioning (Biopython, Scikit-learn).
 - [ ] [TECH-002] Primitive-bound Pydantic schema enforcement.
+
+## Frontend Requirements
+
+- [x] [REQ-005] Render responsive layout frame with navigation header and footer.
+- [x] [REQ-006] Implement FASTA file upload area with drag-and-drop support.
+- [x] [REQ-007] Implement organism selector component for target prediction.
+- [x] [REQ-008] Trigger inference pipeline execution and display output results.

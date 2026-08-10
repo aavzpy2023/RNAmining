@@ -61,4 +61,4 @@ npm run dev
 - `POST /api/v1/fasta/predict`: High-concurrency ML inference via Lifespan DI.
 
 ---
-**Lead Architect:** Andrey Vinajera Zamora (PhD)
+**Lead Architect:** Andrey Vinajera Zamora
