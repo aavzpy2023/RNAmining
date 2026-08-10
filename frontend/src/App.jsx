@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { useFastaUpload } from './hooks/useFastaUpload';
+import { useOrganismSelect } from './hooks/useOrganismSelect';
+import { FastaUploadCard } from './components/FastaUploadCard';
+import { OrganismCard } from './components/OrganismCard';
 
 // ==========================================
 // MOCK HOOKS (For compilation and testing)
 // ==========================================
-const useFastaUpload = () => {
+const mockUseFastaUpload = () => {
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
@@ -38,7 +42,7 @@ const useFastaUpload = () => {
   return { file, error, isDragging, handleFileSelect, clearFile, handleDragOver, handleDragLeave, handleDrop };
 };
 
-const useOrganismSelect = () => {
+const mockUseOrganismSelect = () => {
   const organismOptions = [
     { value: 'homo_sapiens', label: 'Homo sapiens' },
     { value: 'mus_musculus', label: 'Mus musculus' },
@@ -129,7 +133,7 @@ const Navbar = () => (
   </header>
 );
 
-const FastaUploadCard = ({ file, error, isDragging, onFileSelect, clearFile, onDragOver, onDragLeave, onDrop }) => (
+const MockFastaUploadCard = ({ file, error, isDragging, onFileSelect, clearFile, onDragOver, onDragLeave, onDrop }) => (
   <section style={styles.card}>
   <div style={styles.cardHeader}>
   <h2 style={styles.cardTitle}>Dataset</h2>
@@ -185,7 +189,7 @@ const FastaUploadCard = ({ file, error, isDragging, onFileSelect, clearFile, onD
   </section>
 );
 
-const OrganismCard = ({ selectedOrganism, organismOptions, onOrganismChange }) => (
+const MockOrganismCard = ({ selectedOrganism, organismOptions, onOrganismChange }) => (
   <section style={styles.card}>
   <div style={{ ...styles.cardHeader, border: 'none', marginBottom: '6px', paddingBottom: 0 }}>
   <h2 style={styles.cardTitle}>Organisms</h2>
@@ -289,9 +293,23 @@ function App() {
         <p style={styles.heroP}>Upload your .fasta files to begin.</p>
         </section>
 
-        <FastaUploadCard {...fastaUpload} />
+        <FastaUploadCard
+          file={fastaUpload.file}
+          error={fastaUpload.error}
+          isDragging={fastaUpload.isDragging}
+          onFileSelect={fastaUpload.handleFileSelect}
+          onClearFile={fastaUpload.clearFile}
+          onDragOver={fastaUpload.handleDragOver}
+          onDragLeave={fastaUpload.handleDragLeave}
+          onDrop={fastaUpload.handleDrop}
+        />
 
-        <OrganismCard {...organismSelect} />
+        <OrganismCard
+          selectedOrganism={organismSelect.selectedOrganism}
+          organismOptions={organismSelect.organismOptions}
+          onOrganismChange={organismSelect.setSelectedOrganism}
+          isLoading={organismSelect.isLoading}
+        />
 
         <RunSection
         isRunning={analysisRunner.isRunning}

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 
 export function FastaUploadCard({
   file,
@@ -11,9 +11,50 @@ export function FastaUploadCard({
   onDrop,
 }) {
   const inputRef = useRef(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const styles = {
     card: {
+      border: isDragging ? '1px solid #38bdf8' : '1px solid #334155',
+      borderRadius: '16px',
+      padding: '20px',
+      backgroundColor: '#1e293b',
+      marginBottom: '20px',
+      boxShadow: '0 4px 6px rgba(0,0,0,0.2)',
+      textAlign: 'left',
+    },
+    cardHeader: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      borderBottom: '1px solid #334155',
+      paddingBottom: '10px',
+      marginBottom: '16px',
+    },
+    cardTitle: {
+      fontSize: '20px',
+      fontWeight: '600',
+      color: '#f8fafc',
+      margin: 0,
+    },
+    headerActions: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: '16px',
+    },
+    actionBtn: {
+      background: 'none',
+      border: 'none',
+      color: '#94a3b8',
+      cursor: 'pointer',
+      fontSize: '14px',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '4px',
+      padding: 0,
+      transition: 'color 0.2s',
+    },
+    dropZone: {
       border: isDragging ? '2px dashed #38bdf8' : '2px dashed #475569',
       borderRadius: '12px',
       padding: '24px',
@@ -21,7 +62,6 @@ export function FastaUploadCard({
       textAlign: 'center',
       transition: 'all 0.2s ease',
       cursor: 'pointer',
-      margin: '16px 0',
     },
     icon: {
       fontSize: '32px',
@@ -49,6 +89,39 @@ export function FastaUploadCard({
     hiddenInput: {
       display: 'none',
     },
+    modalOverlay: {
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      backgroundColor: 'rgba(15, 23, 42, 0.9)',
+      backdropFilter: 'blur(8px)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      zIndex: 1000,
+    },
+    modalContent: {
+      backgroundColor: '#1e293b',
+      borderRadius: '16px',
+      padding: '32px',
+      maxWidth: '600px',
+      width: '90%',
+      border: '1px solid #334155',
+      boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
+    },
+    samplePre: {
+      backgroundColor: '#0f172a',
+      color: '#38bdf8',
+      padding: '16px',
+      borderRadius: '8px',
+      fontSize: '13px',
+      fontFamily: 'monospace',
+      overflowX: 'auto',
+      whiteSpace: 'pre-wrap',
+      marginTop: '16px',
+    }
   };
 
   const handleInputChange = (e) => {
@@ -58,27 +131,58 @@ export function FastaUploadCard({
   };
 
   return (
-    <div
-      style={styles.card}
-      onDragOver={onDragOver}
-      onDragLeave={onDragLeave}
-      onDrop={onDrop}
-      onClick={() => inputRef.current?.click()}
-      data-testid="fasta-upload-card"
-    >
-      <input
-        ref={inputRef}
-        type="file"
-        accept=".fasta,.fa,.fna,.ffn,.faa,.frn"
-        style={styles.hiddenInput}
-        onChange={handleInputChange}
-        data-testid="fasta-file-input"
-      />
-      <div style={styles.icon}>🧬</div>
-      <h3>Arrastra y suelta tu archivo FASTA aquí</h3>
-      <p style={{ color: '#94a3b8', fontSize: '14px' }}>
-        Soporta extensiones .fasta, .fa o haz clic para seleccionar
-      </p>
+    <div style={styles.card} data-testid="fasta-upload-card">
+      <div style={styles.cardHeader}>
+        <h2 style={styles.cardTitle}>Dataset</h2>
+        <div style={styles.headerActions}>
+          <button
+            style={styles.actionBtn}
+            onClick={(e) => { e.stopPropagation(); setIsModalOpen(true); }}
+            onMouseEnter={(e) => e.target.style.color = '#38bdf8'}
+            onMouseLeave={(e) => e.target.style.color = '#94a3b8'}
+          >
+            <span className="material-symbols-outlined" style={{ fontSize: '18px', pointerEvents: 'none' }}>
+              visibility
+            </span>
+            View sequences
+          </button>
+          <button
+            style={styles.actionBtn}
+            onClick={(e) => { e.stopPropagation(); setIsModalOpen(true); }}
+            onMouseEnter={(e) => e.target.style.color = '#38bdf8'}
+            onMouseLeave={(e) => e.target.style.color = '#94a3b8'}
+          >
+            <span className="material-symbols-outlined" style={{ fontSize: '16px', pointerEvents: 'none' }}>
+              info
+            </span>
+            .fasta - examples
+          </button>
+        </div>
+      </div>
+
+      <div
+        style={styles.dropZone}
+        onDragOver={onDragOver}
+        onDragLeave={onDragLeave}
+        onDrop={onDrop}
+        onClick={() => inputRef.current?.click()}
+      >
+        <input
+          ref={inputRef}
+          type="file"
+          accept=".fasta,.fa,.fna,.ffn,.faa,.frn"
+          style={styles.hiddenInput}
+          onChange={handleInputChange}
+          data-testid="fasta-file-input"
+        />
+        <div style={styles.icon}>🧬</div>
+        <h3 style={{ margin: '8px 0', color: '#f8fafc' }}>
+          Drag and drop your FASTA file here
+        </h3>
+        <p style={{ color: '#94a3b8', fontSize: '14px', margin: 0 }}>
+          Supports .fasta, .fa extensions or click to browse
+        </p>
+      </div>
 
       {file && (
         <div style={styles.fileInfo}>
@@ -91,12 +195,33 @@ export function FastaUploadCard({
               onClearFile();
             }}
           >
-            Quitar archivo
+            Remove file
           </button>
         </div>
       )}
 
       {error && <p style={styles.errorText}>❌ {error}</p>}
+
+      {isModalOpen && (
+        <div style={styles.modalOverlay} onClick={() => setIsModalOpen(false)}>
+          <div style={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+            <h3 style={{ marginTop: 0, color: '#f8fafc' }}>FASTA Examples</h3>
+            <pre style={styles.samplePre}>
+              {`>RNA_Sequence_1
+GTCTCCCCTAGAGTTCCCTTGACCACTTCACTGGGGACCTTCTCTAATTATAATGACTTC
+CTACTGAAGTGTTTGGGGGAACTCCTGGTGCCAT
+
+>RNA_Sequence_2
+ATCGCTTCTCGGCCTTTTGGCTAAGATCAAGTGTAGGAACAAATATATTTGAAGTTTTTA
+TAACTTTGTTTTTTGAAATTAATGTTTGGTTGTCAGAGATCACAATTTCTTTTCAGTAAT
+TTCTAGGAATATTCTCA`}
+            </pre>
+            <button style={{ ...styles.button, width: '100%' }} onClick={() => setIsModalOpen(false)}>
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

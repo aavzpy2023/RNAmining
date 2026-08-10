@@ -1,9 +1,10 @@
 import React from 'react';
 
 export function OrganismCard({
-  selectedOrganism,
-  organismOptions,
-  onOrganismChange,
+    selectedOrganism,
+    organismOptions,
+    onOrganismChange,
+    isLoading = false,
 }) {
   const styles = {
     card: {
@@ -42,7 +43,7 @@ export function OrganismCard({
   return (
     <div style={styles.card} data-testid="organism-card">
       <label htmlFor="organism-select" style={styles.label}>
-        🌱 Organismo de Origen:
+        🌱 Organism
       </label>
       <select
         id="organism-select"
@@ -50,7 +51,9 @@ export function OrganismCard({
         onChange={(e) => onOrganismChange(e.target.value)}
         style={styles.select}
         data-testid="organism-select"
+        disabled={isLoading}
       >
+        {isLoading && <option>Loading models...</option>}
         {organismOptions.map((org) => (
           <option key={org} value={org}>
             {org}
@@ -58,7 +61,7 @@ export function OrganismCard({
         ))}
       </select>
       <p style={styles.helperText}>
-        Selecciona la especie objetivo para ajustar los parámetros de predicción.
+        Select the target species to adjust prediction parameters.
       </p>
     </div>
   );

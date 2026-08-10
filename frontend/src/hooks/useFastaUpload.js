@@ -6,8 +6,9 @@ export function useFastaUpload() {
   const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
 
-  const validateAndSetFile = useCallback((selectedFile) => {
+  const validateAndSetFile = useCallback(async (selectedFile) => {
     if (!selectedFile) {
       setFile(null);
       setError(null);
@@ -19,12 +20,33 @@ export function useFastaUpload() {
 
     if (!isValid) {
       setFile(null);
-      setError('Formato no válido. Debe ser un archivo .fasta o .fa');
+      setError('Invalid format. Must be a .fasta or .fa file');
       return;
     }
 
-    setFile(selectedFile);
-    setError(null);
+    const formData = new FormData();
+    formData.append('file', selectedFile);
+
+    setIsUploading(true);
+    try {
+      const response = await fetch('/api/v1/fasta/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const errData = await response.json();
+        throw new Error(errData.detail || 'Error uploading file');
+      }
+
+      setFile(selectedFile);
+      setError(null);
+    } catch (err) {
+      setFile(null);
+      setError(err.message);
+    } finally {
+      setIsUploading(false);
+    }
   }, []);
 
   const handleFileSelect = useCallback((selectedFile) => {
@@ -58,6 +80,7 @@ export function useFastaUpload() {
     file,
     error,
     isDragging,
+    isUploading,
     handleFileSelect,
     clearFile,
     handleDragOver,

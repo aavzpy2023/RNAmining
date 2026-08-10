@@ -18,3 +18,7 @@
 - [x] [REQ-006] Implement FASTA file upload area with drag-and-drop support.
 - [x] [REQ-007] Implement organism selector component for target prediction.
 - [x] [REQ-008] Trigger inference pipeline execution and display output results.
+- [x] [REQ-009] Expose dynamic ML model list via backend API.
+- [x] [REQ-010] Implement async model fetching in frontend organism logic.
+- [x] [REQ-011] Implement automated multipart upload on file selection.
+- [x] [REQ-012] Refactor sample sequences view into a high-fidelity modal.

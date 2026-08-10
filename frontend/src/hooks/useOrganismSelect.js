@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 
 export const DEFAULT_ORGANISMS = [
   'Homo sapiens',
@@ -9,19 +9,40 @@ export const DEFAULT_ORGANISMS = [
 ];
 
 export function useOrganismSelect(initialOrganism = 'Homo sapiens') {
-  const [selectedOrganism, setOrganism] = useState(initialOrganism);
+    const [selectedOrganism, setOrganism] = useState(initialOrganism);
+    const [organismOptions, setOptions] = useState(DEFAULT_ORGANISMS);
+    const [isLoading, setIsLoading] = useState(false);
 
-  const setSelectedOrganism = useCallback((organism) => {
-    if (DEFAULT_ORGANISMS.includes(organism)) {
-      setOrganism(organism);
-    }
-  }, []);
+    useEffect(() => {
+        const fetchModels = async () => {
+            setIsLoading(true);
+            try {
+                const response = await fetch('/api/v1/models');
+                if (!response.ok) throw new Error('Network error');
+                const data = await response.json();
+                if (data.models && data.models.length > 0) {
+                    setOptions(data.models);
+                    setOrganism(data.models[0]);
+                }
+            } catch (error) {
+                console.error("Failed to fetch models, using defaults:", error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        fetchModels();
+    }, []);
 
-  return {
-    selectedOrganism,
-    organismOptions: DEFAULT_ORGANISMS,
-    setSelectedOrganism,
-  };
+    const setSelectedOrganism = useCallback((organism) => {
+        setOrganism(organism);
+    }, []);
+
+    return {
+        selectedOrganism,
+        organismOptions,
+        setSelectedOrganism,
+        isLoading,
+    };
 }
 
 export default useOrganismSelect;
