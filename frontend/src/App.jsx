@@ -8,6 +8,7 @@ import { OrganismCard } from './components/OrganismCard';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Tutorial from './pages/Tutorial';
+import Download from './pages/Download';
 
 // ==========================================
 // MOCK HOOKS (Para pruebas locales)
@@ -65,7 +66,7 @@ const Navbar = ({ currentView, setView }) => (
   <button onClick={() => setView('run')} style={currentView === 'run' ? styles.navLinkActive : styles.navLink}>Run</button>
   <button onClick={() => setView('about')} style={currentView === 'about' ? styles.navLinkActive : styles.navLink}>About</button>
   <button onClick={() => setView('tutorial')} style={currentView === 'tutorial' ? styles.navLinkActive : styles.navLink}>Tutorial</button>
-  <a href="#" style={styles.navLink}>Download</a>
+  <button onClick={() => setView('download')} style={currentView === 'download' ? styles.navLinkActive : styles.navLink}>Download</button>
   <button onClick={() => setView('contact')} style={currentView === 'contact' ? styles.navLinkActive : styles.navLink}>Contact</button>
   </nav>
   </div>
@@ -167,6 +168,8 @@ function App() {
       {currentView === 'about' && <About />}
 
       {currentView === 'tutorial' && <Tutorial />}
+
+      {currentView === 'download' && <Download />}
 
       {currentView === 'contact' && <Contact />}
       </main>
