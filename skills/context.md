@@ -12,6 +12,7 @@
 - `backend/app/lifespan`: Model DI managed via FastAPI lifespan context.
 - `backend/app/schemas/`: Pydantic DTOs (Primitive-bound).
 - `backend/app/utils/`: Business logic and stream parsers.
+- `backend/app/utils/validators.py`: Biometric string sanitization SSoT.
 - `backend/app/samples/`: Datasets (coding.fasta, noncoding.fasta, edata.fasta).
 - `backend/conftest.py`: Configures PYTHONPATH for local test execution.
 - `leai_docs/planning/`: Source of truth for roadmap and backlog.

@@ -1,5 +1,6 @@
-from pydantic import BaseModel, Field
-from typing import List
+from pydantic import BaseModel, Field, AfterValidator
+from typing import List, Annotated
+from app.utils.validators import clean_sequence
 
 class FastaRecordDTO(BaseModel):
     """
@@ -7,7 +8,9 @@ class FastaRecordDTO(BaseModel):
     Strictly uses primitive types for boundary safety.
     """
     header: str = Field(..., description="The FASTA sequence header")
-    sequence: str = Field(..., description="The raw RNA/DNA sequence string")
+    sequence: Annotated[str, AfterValidator(clean_sequence)] = Field(
+        ..., description="The raw RNA/DNA sequence string"
+    )
     length: int = Field(..., description="Length of the sequence")
 
 class SampleFastaResponse(BaseModel):

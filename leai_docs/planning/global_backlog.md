@@ -10,7 +10,7 @@
 ## Technical Debt & Infrastructure
 
 - [x] [TECH-001] Baseline dependency provisioning (Biopython, Scikit-learn).
-- [ ] [TECH-002] Primitive-bound Pydantic schema enforcement.
+- [x] [TECH-002] Primitive-bound Pydantic schema enforcement.
 
 ## Frontend Requirements
 
