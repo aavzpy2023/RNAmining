@@ -219,7 +219,7 @@ export function FastaUploadCard({
 
       {isUploading && (
         <div style={styles.progressBarContainer}>
-          <div style={{ ...styles.progressBarFill, width: '60%', backgroundColor: '#38bdf8' }}>
+          <div style={{ ...styles.progressBarFill, width: '60%' }}>
             <span style={styles.progressText}>Uploading...</span>
           </div>
         </div>
