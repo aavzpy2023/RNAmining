@@ -40,6 +40,11 @@
 - [x] [REQ-022] Visual Progress Bar Determinism (Green enforcement).
 - [x] [REQ-023] Component De-duplication & Routing Trigger isolation.
 
+## Results Table Fixes
+
+- [ ] [REQ-024] Data Binding: Map DTO classification field in headless hooks and UI.
+- [ ] [REQ-025] Determinism: Implement strict CSS Grid table-layout for ResultsTable.
+
 <!-- Mode D Enforced: REQ-013 to REQ-016 applied strictly to Roadmap 6 -->
 <!-- Mode D: UI Dumb Views for REQ-014 and REQ-016 implicitly verified in Story 1.3 -->
 <!-- Mode D: Headless Exporter for REQ-015 implicitly verified in Story 1.4 -->
