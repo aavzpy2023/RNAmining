@@ -34,3 +34,5 @@
 - [x] [REQ-019] Implement pure JS function for ZIP creation in frontend hooks.
 - [x] [REQ-020] Implement pure JS function for state filtering (classification).
 - [x] [REQ-021] Bundle filtered sequences into a zip and trigger file-saver.
+
+<!-- Mode D Enforced: REQ-013 to REQ-016 applied strictly to Roadmap 6 -->
