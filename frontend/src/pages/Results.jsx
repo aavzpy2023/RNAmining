@@ -14,7 +14,7 @@ export default function Results() {
 
   if (!data || data.length === 0) {
     return (
-      <div style={{ color: '#f8fafc', padding: '40px', textAlign: 'center' }}>
+      <div style={{ color: '#f8fafc', padding: '40px', textAlign: 'center', minHeight: '100vh', width: '100%' }}>
         <h2 style={{ marginBottom: '16px' }}>No data available. Please run an analysis.</h2>
         <Link to="/" style={btnStyle}>Return to Home</Link>
       </div>
@@ -22,7 +22,7 @@ export default function Results() {
   }
 
   return (
-    <div style={{ color: '#f8fafc', padding: '20px' }}>
+    <div style={{ color: '#f8fafc', padding: '20px', minHeight: '100vh', width: '100%', alignSelf: 'flex-start' }}>
       <h2 style={{ marginBottom: '16px' }}>📊 Analysis Results</h2>
       <div style={{ display: 'flex', gap: '12px', marginBottom: '20px' }}>
         <button onClick={() => exportAll(validData)} style={btnStyle}>

@@ -219,16 +219,18 @@ export function FastaUploadCard({
 
       {isUploading && (
         <div style={styles.progressBarContainer}>
-          <div style={{ ...styles.progressBarFill, width: '60%' }}>
-            <span style={styles.progressText}>Uploading...</span>
+          <div style={styles.progressBarFill}></div>
+          <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10 }}>
+            <span style={{ fontSize: '12px', fontWeight: 'bold', color: '#f8fafc', textShadow: '0 1px 2px rgba(0,0,0,0.8)' }}>Uploading...</span>
           </div>
         </div>
       )}
 
       {file && !isUploading && (
         <div style={styles.progressBarContainer}>
-          <div style={styles.progressBarFill}>
-            <span style={styles.progressText}>📄 {file.name} ({(file.size / 1024).toFixed(1)} KB) - Complete</span>
+          <div style={{ ...styles.progressBarFill, animation: 'none', width: '100%' }}></div>
+          <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10 }}>
+            <span style={{ fontSize: '12px', fontWeight: 'bold', color: '#0f172a' }}>📄 {file.name} ({(file.size / 1024).toFixed(1)} KB) - Complete</span>
           </div>
         </div>
       )}
