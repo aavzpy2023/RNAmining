@@ -33,10 +33,21 @@ export const RunSection = ({ isRunning, disabled, onClick, result, file }) => {
 
     useEffect(() => {
         if (result && file && !isRunning) {
-            file.text().then(text => {
-                const unifiedData = createUnifiedData(text, result);
-                navigate('/results', { state: { data: unifiedData } });
-            });
+            const processAndNavigate = async () => {
+                try {
+                    let text = '';
+                    if (typeof file.text === 'function') {
+                        text = await file.text();
+                    } else {
+                        text = typeof file === 'string' ? file : '';
+                    }
+                    const unifiedData = createUnifiedData(text, result);
+                    navigate('/results', { state: { data: unifiedData } });
+                } catch (err) {
+                    console.error('Error parsing file before navigation:', err);
+                }
+            };
+            processAndNavigate();
         }
     }, [result, file, isRunning, navigate]);
 

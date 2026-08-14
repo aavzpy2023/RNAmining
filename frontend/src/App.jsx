@@ -10,7 +10,7 @@ import Contact from './pages/Contact';
 import Tutorial from './pages/Tutorial';
 import Download from './pages/Download';
 import Results from './pages/Results';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 
 // ==========================================
 // MOCK HOOKS (Para pruebas locales)
@@ -65,25 +65,34 @@ const styles = {
 // ==========================================
 // NAVBAR & FOOTER
 // ==========================================
-const Navbar = ({ currentView, setView }) => (
-  <header style={styles.navbar}>
-  <div style={styles.navContent}>
-  <button onClick={() => setView('run')} style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'none', border: 'none', cursor: 'pointer' }}>
-  <span className="material-symbols-outlined" style={{ color: '#38bdf8', fontWeight: 'bold' }}>biotech</span>
-  <span style={{ fontSize: '22px', fontWeight: '700', color: '#38bdf8', letterSpacing: '-0.02em' }}>rnamining</span>
-  </button>
+const Navbar = ({ currentView, setView }) => {
+  const navigate = useNavigate();
 
-  {/* Menú reordenado por flujo UX */}
-  <nav style={styles.navLinks}>
-  <button onClick={() => setView('run')} style={currentView === 'run' ? styles.navLinkActive : styles.navLink}>Run</button>
-  <button onClick={() => setView('tutorial')} style={currentView === 'tutorial' ? styles.navLinkActive : styles.navLink}>Tutorial</button>
-  <button onClick={() => setView('about')} style={currentView === 'about' ? styles.navLinkActive : styles.navLink}>About</button>
-  <button onClick={() => setView('download')} style={currentView === 'download' ? styles.navLinkActive : styles.navLink}>Download</button>
-  <button onClick={() => setView('contact')} style={currentView === 'contact' ? styles.navLinkActive : styles.navLink}>Contact</button>
-  </nav>
-  </div>
-  </header>
-);
+  const handleNav = (view) => {
+    setView(view);
+    navigate('/');
+  };
+
+  return (
+    <header style={styles.navbar}>
+    <div style={styles.navContent}>
+    <button onClick={() => handleNav('run')} style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'none', border: 'none', cursor: 'pointer' }}>
+    <span className="material-symbols-outlined" style={{ color: '#38bdf8', fontWeight: 'bold' }}>biotech</span>
+    <span style={{ fontSize: '22px', fontWeight: '700', color: '#38bdf8', letterSpacing: '-0.02em' }}>rnamining</span>
+    </button>
+
+    {/* Menú reordenado por flujo UX */}
+    <nav style={styles.navLinks}>
+    <button onClick={() => handleNav('run')} style={currentView === 'run' ? styles.navLinkActive : styles.navLink}>Run</button>
+    <button onClick={() => handleNav('tutorial')} style={currentView === 'tutorial' ? styles.navLinkActive : styles.navLink}>Tutorial</button>
+    <button onClick={() => handleNav('about')} style={currentView === 'about' ? styles.navLinkActive : styles.navLink}>About</button>
+    <button onClick={() => handleNav('download')} style={currentView === 'download' ? styles.navLinkActive : styles.navLink}>Download</button>
+    <button onClick={() => handleNav('contact')} style={currentView === 'contact' ? styles.navLinkActive : styles.navLink}>Contact</button>
+    </nav>
+    </div>
+    </header>
+  );
+};
 
 const RunSection = ({ isRunning, disabled, onClick }) => (
   <section style={{ textAlign: 'center', marginTop: '16px' }}>
@@ -180,14 +189,7 @@ function App() {
         file={fastaUpload.file}
         />
 
-        {analysisRunner.result && (
-          <div style={styles.resultsCard}>
-          <h3 style={{ color: '#f8fafc', fontSize: '16px', marginBottom: '8px' }}>📊 ML Inference Results:</h3>
-          <pre style={{ overflowX: 'auto', fontSize: '12px', color: '#4ade80', backgroundColor: '#1e293b', padding: '12px', borderRadius: '8px', margin: 0 }}>
-          {JSON.stringify(analysisRunner.result, null, 2)}
-          </pre>
-          </div>
-        )}
+
         </div>
       )}
 
