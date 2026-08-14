@@ -9,6 +9,8 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Tutorial from './pages/Tutorial';
 import Download from './pages/Download';
+import Results from './pages/Results';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 // ==========================================
 // MOCK HOOKS (Para pruebas locales)
@@ -123,6 +125,7 @@ function App() {
   };
 
   return (
+    <BrowserRouter>
     <div style={styles.wrapper}>
     <style>{`
       body { margin: 0; padding: 0; background-color: #0f172a; }
@@ -182,10 +185,14 @@ function App() {
       {currentView === 'download' && <Download />}
 
       {currentView === 'contact' && <Contact />}
+      <Routes>
+        <Route path="/results" element={<Results />} />
+      </Routes>
       </main>
 
       <Footer />
       </div>
+    </BrowserRouter>
   );
 }
 

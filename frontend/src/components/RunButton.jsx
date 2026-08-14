@@ -1,6 +1,8 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-export function RunButton({ isRunning, disabled, onClick }) {
+export function RunButton({ isRunning, disabled, onClick, data }) {
+  const navigate = useNavigate();
   const styles = {
     button: {
       width: '100%',
@@ -20,7 +22,10 @@ export function RunButton({ isRunning, disabled, onClick }) {
   return (
     <button
       style={styles.button}
-      onClick={onClick}
+      onClick={async (e) => {
+        if (onClick) await onClick(e);
+        if (data?.results) navigate('/results', { state: { results: data.results } });
+      }}
       disabled={disabled || isRunning}
       data-testid="run-button"
     >

@@ -30,7 +30,7 @@
 - [x] [REQ-015] Normalize 3-mer array by dividing counts by sum.
 - [x] [REQ-016] Wire 3-mer extraction into FastAPI route and output enriched DTO.
 - [x] [REQ-017] Extend DTO schemas with sequence and classifications (primitives).
-- [ ] [REQ-018] Build strictly UI-only /results page to visually render table.
+- [x] [REQ-018] Build strictly UI-only /results page to visually render table.
 - [x] [REQ-019] Implement pure JS function for ZIP creation in frontend hooks.
 - [x] [REQ-020] Implement pure JS function for state filtering (classification).
 - [x] [REQ-021] Bundle filtered sequences into a zip and trigger file-saver.

@@ -80,7 +80,8 @@ EPIC 2: STATE FRACTAL UI & EXPORT CONTROLLERS | [FRONTEND ISOLATED]
     exportSequences logic. 3. Filter sequences. 4. Bundle jszip]. Type: Task.
   - [ ] [ID-2.0.4] [PLANNING/SYNC]: [1. Sync Story 2.0 & REQ-019, 020, 021].
 
-- [ ] Story 2.1: Results Dashboard (Dumb View) & Router Wiring | [MoSCoW: MUST]
+- [x] Story 2.1: Results Dashboard (Dumb View) & Router Wiring | [MoSCoW: MUST]
+  > Files touched: frontend/src/App.jsx, frontend/src/components/RunButton.jsx, frontend/src/pages/Results.jsx
   Business Requirement: Build the strictly UI-only /results page (<-- REQ-018).
   Story Context Radius: {"frontend/src/App.jsx": ["*"], 
   "frontend/src/pages/Results.jsx": ["*"], "global_backlog.md": ["*"]}
