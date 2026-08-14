@@ -1,4 +1,6 @@
 import { useCallback } from 'react';
+import JSZip from 'jszip';
+import { saveAs } from 'file-saver';
 
 /**
  * Headless hook to serialize unified UI state back into FASTA files.
@@ -30,33 +32,23 @@ export const useFastaExport = () => {
         return chunks ? chunks.join('\n') : cleanSeq;
     };
 
-    const generateBlob = (data) => {
-        const fastaText = data
+    const generateFastaText = (data) => {
+        return data
             .map(d => `>${formatHeader(d.id)}\n${wrapSequence(d.sequence, 60)}`)
             .join('\n') + '\n';
-        return new Blob([fastaText], { type: 'text/plain' });
     };
 
-    /**
-     * Executes the browser download and cleans up URL memory.
-     */
-    const triggerDownload = (blob, filename) => {
-        const url = URL.createObjectURL(blob);
-        const anchor = document.createElement('a');
-        anchor.href = url;
-        anchor.download = filename;
-        
-        document.body.appendChild(anchor);
-        anchor.click();
-        document.body.removeChild(anchor);
-        
-        // Ensure memory cleanup of the object URL
-        setTimeout(() => URL.revokeObjectURL(url), 150);
+    const triggerZipDownload = async (fastaContent, fastaFilename, zipFilename) => {
+        const zip = new JSZip();
+        zip.file(fastaFilename, fastaContent);
+        const zipBlob = await zip.generateAsync({ type: 'blob' });
+        saveAs(zipBlob, zipFilename);
     };
 
-    const exportAll = useCallback((data) => {
+    const exportAll = useCallback(async (data) => {
         if (!data || data.length === 0) return;
-        triggerDownload(generateBlob(data), 'results_all.fasta');
+        const text = generateFastaText(data);
+        await triggerZipDownload(text, 'results_all.fasta', 'results_all.zip');
     }, []);
 
     const isCoding = (d) => {
@@ -75,16 +67,22 @@ export const useFastaExport = () => {
         return cls === 'non-coding';
     };
 
-    const exportCoding = useCallback((data) => {
+    const exportCoding = useCallback(async (data) => {
         if (!data || data.length === 0) return;
         const filtered = data.filter(isCoding);
-        triggerDownload(generateBlob(filtered), 'results_coding.fasta');
+        const text = generateFastaText(filtered);
+        await triggerZipDownload(text, 'results_coding.fasta', 'results_coding.zip');
     }, []);
 
-    const exportNonCoding = useCallback((data) => {
+    const exportNonCoding = useCallback(async (data) => {
         if (!data || data.length === 0) return;
         const filtered = data.filter(isNonCoding);
-        triggerDownload(generateBlob(filtered), 'results_non-coding.fasta');
+        const text = generateFastaText(filtered);
+        await triggerZipDownload(
+            text,
+            'results_non-coding.fasta',
+            'results_non-coding.zip'
+        );
     }, []);
 
     return { exportAll, exportCoding, exportNonCoding };

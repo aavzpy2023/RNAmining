@@ -48,21 +48,21 @@ export default function Results() {
           style={{ ...btnStyle, ...(validData.length === 0 ? disabledBtnStyle : {}) }}
           disabled={validData.length === 0}
         >
-          Export All (FASTA)
+          Export All (ZIP)
         </button>
         <button 
           onClick={() => exportCoding(validData)} 
           style={{ ...btnStyle, ...(!hasCoding ? disabledBtnStyle : {}) }}
           disabled={!hasCoding}
         >
-          Export Coding (FASTA)
+          Export Coding (ZIP)
         </button>
         <button 
           onClick={() => exportNonCoding(validData)} 
           style={{ ...btnStyle, ...(!hasNonCoding ? disabledBtnStyle : {}) }}
           disabled={!hasNonCoding}
         >
-          Export Non-Coding (FASTA)
+          Export Non-Coding (ZIP)
         </button>
       </div>
       {hiddenCount > 0 && (
