@@ -167,6 +167,7 @@ function App() {
         file={fastaUpload.file}
         error={fastaUpload.error}
         isDragging={fastaUpload.isDragging}
+        isUploading={fastaUpload.isUploading}
         onFileSelect={fastaUpload.handleFileSelect}
         onClearFile={fastaUpload.clearFile}
         onDragOver={fastaUpload.handleDragOver}

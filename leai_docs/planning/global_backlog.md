@@ -35,6 +35,11 @@
 - [x] [REQ-020] Implement pure JS function for state filtering (classification).
 - [x] [REQ-021] Bundle filtered sequences into a zip and trigger file-saver.
 
+## UI Refinement & Navigation Fixes
+
+- [ ] [REQ-022] Visual Progress Bar Determinism (Green enforcement).
+- [ ] [REQ-023] Component De-duplication & Routing Trigger isolation.
+
 <!-- Mode D Enforced: REQ-013 to REQ-016 applied strictly to Roadmap 6 -->
 <!-- Mode D: UI Dumb Views for REQ-014 and REQ-016 implicitly verified in Story 1.3 -->
 <!-- Mode D: Headless Exporter for REQ-015 implicitly verified in Story 1.4 -->

@@ -4,6 +4,7 @@ export function FastaUploadCard({
   file,
   error,
   isDragging,
+  isUploading,
   onFileSelect,
   onClearFile,
   onDragOver,
@@ -86,10 +87,35 @@ export function FastaUploadCard({
       cursor: 'pointer',
       marginTop: '12px',
     },
-    hiddenInput: {
-      display: 'none',
-    },
-    modalOverlay: {
+      hiddenInput: {
+        display: 'none',
+      },
+      progressBarContainer: {
+        marginTop: '16px',
+        width: '100%',
+        backgroundColor: '#334155',
+        borderRadius: '8px',
+        overflow: 'hidden',
+        height: '24px',
+        position: 'relative'
+      },
+      progressBarFill: {
+        height: '100%',
+        backgroundColor: '#4ade80',
+        width: '100%',
+        animation: 'progress 0.6s ease-out forwards',
+        display: 'flex',
+        alignItems: 'center',
+        paddingLeft: '12px',
+        boxSizing: 'border-box'
+      },
+      progressText: {
+        color: '#0f172a',
+        fontSize: '12px',
+        fontWeight: 'bold',
+        whiteSpace: 'nowrap'
+      },
+      modalOverlay: {
       position: 'fixed',
       top: 0,
       left: 0,
@@ -131,6 +157,13 @@ export function FastaUploadCard({
   };
 
   return (
+    <>
+    <style>{`
+      @keyframes progress {
+        0% { width: 0%; }
+        100% { width: 100%; }
+      }
+    `}</style>
     <div style={styles.card} data-testid="fasta-upload-card">
       <div style={styles.cardHeader}>
         <h2 style={styles.cardTitle}>Dataset</h2>
@@ -184,10 +217,24 @@ export function FastaUploadCard({
         </p>
       </div>
 
-      {file && (
+      {isUploading && (
+        <div style={styles.progressBarContainer}>
+          <div style={{ ...styles.progressBarFill, width: '60%', backgroundColor: '#38bdf8' }}>
+            <span style={styles.progressText}>Uploading...</span>
+          </div>
+        </div>
+      )}
+
+      {file && !isUploading && (
+        <div style={styles.progressBarContainer}>
+          <div style={styles.progressBarFill}>
+            <span style={styles.progressText}>📄 {file.name} ({(file.size / 1024).toFixed(1)} KB) - Complete</span>
+          </div>
+        </div>
+      )}
+
+      {file && !isUploading && (
         <div style={styles.fileInfo}>
-          <span>📄 {file.name} ({(file.size / 1024).toFixed(1)} KB)</span>
-          <br />
           <button
             style={styles.button}
             onClick={(e) => {
@@ -200,7 +247,7 @@ export function FastaUploadCard({
         </div>
       )}
 
-      {error && <p style={styles.errorText}>❌ {error}</p>}
+      {error && !isUploading && <p style={styles.errorText}>❌ {error}</p>}
 
       {isModalOpen && (
         <div style={styles.modalOverlay} onClick={() => setIsModalOpen(false)}>
@@ -223,6 +270,7 @@ TTCTAGGAATATTCTCA`}
         </div>
       )}
     </div>
+    </>
   );
 }
 

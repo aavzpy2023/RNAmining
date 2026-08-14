@@ -29,6 +29,8 @@ export function useFastaUpload() {
 
     setIsUploading(true);
     try {
+      // Simulate real-world progress delay for UX requirement
+      await new Promise(r => setTimeout(r, 600)); 
       const response = await fetch('/api/v1/fasta/upload', {
         method: 'POST',
         body: formData,
