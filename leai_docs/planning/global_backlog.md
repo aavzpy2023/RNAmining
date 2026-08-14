@@ -42,7 +42,7 @@
 
 ## Results Table Fixes
 
-- [ ] [REQ-024] Data Binding: Map DTO classification field in headless hooks and UI.
+- [x] [REQ-024] Data Binding: Map DTO classification field in headless hooks and UI.
 - [ ] [REQ-025] Determinism: Implement strict CSS Grid table-layout for ResultsTable.
 
 <!-- Mode D Enforced: REQ-013 to REQ-016 applied strictly to Roadmap 6 -->

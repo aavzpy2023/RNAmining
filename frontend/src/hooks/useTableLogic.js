@@ -4,7 +4,7 @@ import { useState, useMemo } from 'react';
  * Headless logic hook for table state management.
  * Strictly enforces React State Fractality separating data manipulation from views.
  * 
- * @param {Array<{id: string, sequence: string, prediction: string, probability: number}>} initialData 
+ * @param {Array<{id: string, sequence: string, classification: string, probability: number}>} initialData 
  * @returns {object} Table state properties and handlers
  */
 export const useTableLogic = (initialData = []) => {
@@ -22,7 +22,7 @@ export const useTableLogic = (initialData = []) => {
             const lowerSearch = search.toLowerCase();
             data = data.filter(item => 
                 (item.id && item.id.toLowerCase().includes(lowerSearch)) || 
-                (item.prediction && item.prediction.toLowerCase().includes(lowerSearch))
+                (item.classification && item.classification.toLowerCase().includes(lowerSearch))
             );
         }
 

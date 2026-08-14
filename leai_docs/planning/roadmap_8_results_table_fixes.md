@@ -13,7 +13,8 @@ Story Context Radius: {"leai_docs/planning/global_backlog.md": ["*"]}
 Layered Technical Breakdown:
 - [x] [ID-1.0.1] [PLANNING/INIT]: [1. Create leai_docs/planning/ directory if missing. 2. Update leai_docs/planning/global_backlog.md by appending REQ-024 and REQ-025 under a new section "## Results Table Fixes". 3. Write raw markdown (INCLUDING the YAML Frontmatter block above) into leai_docs/planning/roadmap_8_results_table_fixes.md]. Type: Task.
 
-Story 1.1: Headless Logic Refactoring (State Fractality) | [MoSCoW: MUST] | [Complexity: EASY]
+[x] Story 1.1: Headless Logic Refactoring (State Fractality) | [MoSCoW: MUST] | [Complexity: EASY]
+> Files touched: frontend/src/hooks/useTableLogic.js
 Story Context Radius: {"frontend/src/hooks/useTableLogic.js": ["*"], "leai_docs/planning/roadmap_8_results_table_fixes.md": ["*"], "leai_docs/planning/global_backlog.md": ["*"]}
 Layered Technical Breakdown (FLASH-COMPATIBLE ALGORITHMS):
 - [ ] [ID-1.1.1] [TESTING/TDE]: [1. Setup an in-memory mock array with `{ id: 'seq1', classification: 'coding', probability: 0.99 }`. 2. Assert that the headless hook's search filter correctly matches the 'classification' key. 3. Assert pagination bounds remain stable]. Type: Task.
