@@ -17,12 +17,13 @@ Business Requirement: Isolate the text extraction and DTO formatting logic away 
 - [ ] [ID-1.1.2] [LOGIC/HOOKS]: [1. In RunSection.jsx, audit the useEffect block. 2. Ensure file.text() is safely awaited and wrapped in a robust try/catch that guarantees processAndNavigate completes before unlocking the state. 3. Prevent execution if result or file are null]. Type: Task.
 - [ ] [ID-1.1.3] [PLANNING/SYNC]: [1. Open leai_docs/planning/roadmap_7_ui_fixes_navigation.md and check - [x] for Story 1.1. 2. Append > Files touched: [list] under the story]. Type: Task.
 
-## - [ ] Story 1.2: [Dumb View] Component De-duplication & Routing Trigger | [MoSCoW: MUST] | [Complexity: EASY] (<-- REQ-023)
+## - [x] Story 1.2: [Dumb View] Component De-duplication & Routing Trigger | [MoSCoW: MUST] | [Complexity: EASY] (<-- REQ-023)
 Business Requirement: Eradicate duplicated navigation logic in the UI layer. Ensure only one component dictates the router transition.
-- [ ] [ID-1.2.1] [TESTING/TDE]: [1. Mount RunButton and RunSection with mock Router. 2. Assert RunButton strictly triggers onClick and DOES NOT call navigate. 3. Assert RunSection triggers navigate correctly]. Type: Task.
-- [ ] [ID-1.2.2] [VIEW/PRUNE]: [1. Open frontend/src/components/RunButton.jsx. 2. Delete the import { useNavigate } statement. 3. Remove the if (data?.results) navigate(...) line from the onClick handler. Force it to be a completely dumb component]. Type: Task.
-- [ ] [ID-1.2.3] [VIEW/WIRING]: [1. Verify RunSection.jsx passes the correct isRunning, disabled, and onClick props down to the button without internal state leakage]. Type: Task.
-- [ ] [ID-1.2.4] [PLANNING/SYNC]: [1. Open leai_docs/planning/roadmap_7_ui_fixes_navigation.md and check - [x] for Story 1.2. 2. Append > Files touched: [list] under the story. 3. Open leai_docs/planning/global_backlog.md and check - [x] for [REQ-023]]. Type: Task.
+- [x] [ID-1.2.1] [TESTING/TDE]: [1. Mount RunButton and RunSection with mock Router. 2. Assert RunButton strictly triggers onClick and DOES NOT call navigate. 3. Assert RunSection triggers navigate correctly]. Type: Task.
+- [x] [ID-1.2.2] [VIEW/PRUNE]: [1. Open frontend/src/components/RunButton.jsx. 2. Delete the import { useNavigate } statement. 3. Remove the if (data?.results) navigate(...) line from the onClick handler. Force it to be a completely dumb component]. Type: Task.
+- [x] [ID-1.2.3] [VIEW/WIRING]: [1. Verify RunSection.jsx passes the correct isRunning, disabled, and onClick props down to the button without internal state leakage]. Type: Task.
+- [x] [x] [ID-1.2.4] [PLANNING/SYNC]: [1. Open leai_docs/planning/roadmap_7_ui_fixes_navigation.md and check - [x] for Story 1.2. 2. Append > Files touched: [list] under the story. 3. Open leai_docs/planning/global_backlog.md and check - [x] for [REQ-023]]. Type: Task.
+> Files touched: frontend/src/components/Routing.test.jsx, frontend/src/components/RunButton.jsx
 
 ## - [ ] Story 1.3: [Micro-Surgery] Visual Progress Bar Determinism | [MoSCoW: MUST] | [Complexity: EASY] (<-- REQ-022)
 Business Requirement: Force the global/upload progress indicator to bypass all intermediate color transitions (blue) and render strictly in green (#22c55e or equivalent) from 0% to 100%.

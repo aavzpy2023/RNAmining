@@ -38,7 +38,7 @@
 ## UI Refinement & Navigation Fixes
 
 - [ ] [REQ-022] Visual Progress Bar Determinism (Green enforcement).
-- [ ] [REQ-023] Component De-duplication & Routing Trigger isolation.
+- [x] [REQ-023] Component De-duplication & Routing Trigger isolation.
 
 <!-- Mode D Enforced: REQ-013 to REQ-016 applied strictly to Roadmap 6 -->
 <!-- Mode D: UI Dumb Views for REQ-014 and REQ-016 implicitly verified in Story 1.3 -->
