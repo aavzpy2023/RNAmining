@@ -27,8 +27,10 @@ class PredictionRequestDTO(BaseModel):
 class PredictionResultDTO(BaseModel):
     """Individual prediction outcome."""
     header: str
+    sequence: str = Field(..., description="Raw RNA sequence")
     prediction: int
     probability: float
+    classification: str = Field(..., description="Coding potential label")
 
 class PredictionResponseDTO(BaseModel):
     """Final batch prediction response."""

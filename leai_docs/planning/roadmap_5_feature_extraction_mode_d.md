@@ -16,7 +16,8 @@ EPIC 0: BASE INFRASTRUCTURE & SHARED STATE | [CORE SCHEMAS]
     with new REQ-013 to REQ-021. 2. Write raw markdown (INCLUDING YAML Frontmatter 
     block above) into roadmap_5_feature_extraction_mode_d.md]. Type: Task.
 
-- [ ] Story 0.1: DTO Schema Mutations & Semantic Primacy | [MoSCoW: MUST]
+- [x] Story 0.1: DTO Schema Mutations & Semantic Primacy | [MoSCoW: MUST]
+  > Files touched: backend/app/schemas/fasta.py, backend/tests/test_schemas.py
   Business Requirement: Extend DTOs to include sequence strings and classification 
   labels while strictly locking to primitives.
   Story Context Radius: {"backend/app/schemas/fasta.py": ["*"], 

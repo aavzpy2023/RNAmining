@@ -29,7 +29,7 @@
 - [ ] [REQ-014] Transform genetic sequences into normalized trinucleotide matrices.
 - [ ] [REQ-015] Normalize 3-mer array by dividing counts by sum.
 - [ ] [REQ-016] Wire 3-mer extraction into FastAPI route and output enriched DTO.
-- [ ] [REQ-017] Extend DTO schemas with sequence and classifications (primitives).
+- [x] [REQ-017] Extend DTO schemas with sequence and classifications (primitives).
 - [ ] [REQ-018] Build strictly UI-only /results page to visually render table.
 - [ ] [REQ-019] Implement pure JS function for ZIP creation in frontend hooks.
 - [ ] [REQ-020] Implement pure JS function for state filtering (classification).
