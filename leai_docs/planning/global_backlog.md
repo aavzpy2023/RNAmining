@@ -22,3 +22,15 @@
 - [x] [REQ-010] Implement async model fetching in frontend organism logic.
 - [x] [REQ-011] Implement automated multipart upload on file selection.
 - [x] [REQ-012] Refactor sample sequences view into a high-fidelity modal.
+
+## Feature Extraction & Stateful Results (Mode D)
+
+- [ ] [REQ-013] Validate FASTA syntax strictly (throw ValueError on missing >).
+- [ ] [REQ-014] Transform genetic sequences into normalized trinucleotide matrices.
+- [ ] [REQ-015] Normalize 3-mer array by dividing counts by sum.
+- [ ] [REQ-016] Wire 3-mer extraction into FastAPI route and output enriched DTO.
+- [ ] [REQ-017] Extend DTO schemas with sequence and classifications (primitives).
+- [ ] [REQ-018] Build strictly UI-only /results page to visually render table.
+- [ ] [REQ-019] Implement pure JS function for ZIP creation in frontend hooks.
+- [ ] [REQ-020] Implement pure JS function for state filtering (classification).
+- [ ] [REQ-021] Bundle filtered sequences into a zip and trigger file-saver.
