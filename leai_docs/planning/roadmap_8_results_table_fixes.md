@@ -21,7 +21,8 @@ Layered Technical Breakdown (FLASH-COMPATIBLE ALGORITHMS):
 - [ ] [ID-1.1.2] [LOGIC/IMPLEMENTATION]: [1. Open `frontend/src/hooks/useTableLogic.js`. 2. In the `processedData` useMemo block, surgically replace `item.prediction` with `item.classification` in the search filter logic. 3. Update the JSDoc `@param` to reflect `classification` instead of `prediction`]. Type: Task. (<-- REQ-024)
 - [ ] [ID-1.1.3] [PLANNING/SYNC]: [1. Open leai_docs/planning/roadmap_8_results_table_fixes.md and check - [x] for Story 1.1. 2. Append > Files touched: frontend/src/hooks/useTableLogic.js under the story. 3. Open leai_docs/planning/global_backlog.md and check - [x] for [REQ-024]]. Type: Task.
 
-Story 1.2: Dumb View Determinism & Data Binding (UI) | [MoSCoW: MUST] | [Complexity: EASY]
+[x] Story 1.2: Dumb View Determinism & Data Binding (UI) | [MoSCoW: MUST] | [Complexity: EASY]
+> Files touched: frontend/src/components/ResultsTable.jsx
 Story Context Radius: {"frontend/src/components/ResultsTable.jsx": ["*"], "frontend/src/pages/Results.jsx": ["READ-ONLY"], "leai_docs/planning/roadmap_8_results_table_fixes.md": ["*"], "leai_docs/planning/global_backlog.md": ["*"]}
 Layered Technical Breakdown (FLASH-COMPATIBLE ALGORITHMS):
 - [ ] [ID-1.2.1] [TESTING/TDE]: [1. Setup a mock render of `ResultsTable` with dummy classification data. 2. Assert that `tableLayout: 'fixed'` is present on the table node. 3. Assert that 'unknown' is rendered if classification is missing]. Type: Task.

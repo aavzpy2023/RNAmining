@@ -69,21 +69,21 @@ export const ResultsTable = ({ data, searchHandlers, paginationHandlers }) => {
                 </div>
             </div>
 
-            <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+            <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', tableLayout: 'fixed' }}>
                 <thead>
                     <tr>
-                        <th style={thStyle}>Sequence ID</th>
-                        <th style={thStyle}>Coding Potential</th>
-                        <th style={thStyle}>Probability</th>
+                        <th style={{ ...thStyle, width: '33%' }}>Sequence ID</th>
+                        <th style={{ ...thStyle, width: '33%' }}>Coding Potential</th>
+                        <th style={{ ...thStyle, width: '33%' }}>Probability</th>
                     </tr>
                 </thead>
                 <tbody>
                     {data.map((row) => (
                         <tr key={row.id}>
                             <td style={tdStyle}>{row.id}</td>
-                            <td style={tdStyle}>{row.prediction}</td>
+                            <td style={tdStyle}>{row.classification || 'unknown'}</td>
                             <td style={tdStyle}>
-                                {Number(row.probability).toFixed(4)}
+                                {Number(row.probability || 0).toFixed(4)}
                             </td>
                         </tr>
                     ))}
