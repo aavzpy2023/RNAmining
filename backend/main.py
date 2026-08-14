@@ -40,7 +40,8 @@ def get_sample_fasta():
     """
     Returns a predefined sample FASTA file content for exploration.
     """
-    sample_path = Path("backend/app/samples/sample.fasta")
+    base_dir = Path(__file__).resolve().parent
+    sample_path = base_dir / "app" / "samples" / "sample.fasta"
     content = sample_path.read_text()
     
     records = []
