@@ -27,7 +27,15 @@ const useAnalysisRunner = () => {
     setError(null);
     setTimeout(() => {
       setIsRunning(false);
-      setResult({ status: 'success', jobId: 'rna_12345', organism, nodes: 150, links: 320 });
+      setResult({ 
+        status: 'success', 
+        jobId: 'rna_12345', 
+        organism, 
+        predictions: [
+          { classification: 'coding', probability: 0.98 },
+          { classification: 'non-coding', probability: 0.85 }
+        ]
+      });
     }, 2000);
   };
 
@@ -136,9 +144,12 @@ function App() {
       <Navbar currentView={currentView} setView={setView} />
 
       <main style={styles.container}>
-      {currentView === 'run' && (
-        <div style={{ width: '100%' }}>
-        <section style={styles.hero}>
+      <Routes>
+        <Route path="/" element={
+          <>
+          {currentView === 'run' && (
+            <div style={{ width: '100%' }}>
+            <section style={styles.hero}>
         <h1 style={styles.heroH1}>Run Analysis</h1>
         <p style={styles.heroP}>Upload your .fasta files to begin.</p>
         </section>
@@ -165,6 +176,8 @@ function App() {
         isRunning={analysisRunner.isRunning}
         disabled={!fastaUpload.file || Boolean(fastaUpload.error)}
         onClick={handleRun}
+        result={analysisRunner.result}
+        file={fastaUpload.file}
         />
 
         {analysisRunner.result && (
@@ -185,7 +198,8 @@ function App() {
       {currentView === 'download' && <Download />}
 
       {currentView === 'contact' && <Contact />}
-      <Routes>
+          </>
+        } />
         <Route path="/results" element={<Results />} />
       </Routes>
       </main>

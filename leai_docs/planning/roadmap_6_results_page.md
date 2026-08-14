@@ -17,10 +17,11 @@ complexity_aggregate: "HARD"
 **Business Requirement:** Safely zip raw sequence data with backend predictions and dispatch to a new route strictly preserving state.
 **Story Context Radius:** `{"frontend/src/App.jsx": ["*"], "frontend/src/components/RunSection.jsx": ["*"]}`
 **Layered Technical Breakdown:**
-- [ ] [ID-1.1.1] [TESTING/TDE]: [1. Setup MemoryRouter mock. 2. Assert navigation sends a purely primitive unified array. 3. Assert error/undefined boundary handling]. Type: Task.
-- [ ] [ID-1.1.2] [ROUTING/WIRING]: [1. Open frontend/src/App.jsx. 2. Import a stubbed `Results` component (to be built) and map it to `/results`. 3. Apply route constraints]. Type: Task.
-- [ ] [ID-1.1.3] [STATE/LOGIC]: [1. Open frontend/src/components/RunSection.jsx. 2. Create the `unifiedData` array by mapping original FASTA sequences with prediction results based on Sequence ID. 3. Trigger `navigate('/results', { state: { data: unifiedData } })` using JSDoc English comments]. Type: Task.
-- [ ] [ID-1.1.4] [PLANNING/SYNC]: [1. Open leai_docs/planning/roadmap_6_results_page.md and check - [x] for Story 1.1. 2. Append > Files touched: [App.jsx, RunSection.jsx]. 3. Open leai_docs/planning/global_backlog.md and check - [x] for [REQ-013]]. Type: Task.
+- [x] [ID-1.1.1] [TESTING/TDE]: [1. Setup MemoryRouter mock. 2. Assert navigation sends a purely primitive unified array. 3. Assert error/undefined boundary handling]. Type: Task.
+- [x] [ID-1.1.2] [ROUTING/WIRING]: [1. Open frontend/src/App.jsx. 2. Import a stubbed `Results` component (to be built) and map it to `/results`. 3. Apply route constraints]. Type: Task.
+- [x] [ID-1.1.3] [STATE/LOGIC]: [1. Open frontend/src/components/RunSection.jsx. 2. Create the `unifiedData` array by mapping original FASTA sequences with prediction results based on Sequence ID. 3. Trigger `navigate('/results', { state: { data: unifiedData } })` using JSDoc English comments]. Type: Task.
+- [x] [ID-1.1.4] [PLANNING/SYNC]: [1. Open leai_docs/planning/roadmap_6_results_page.md and check - [x] for Story 1.1. 2. Append > Files touched: [App.jsx, RunSection.jsx]. 3. Open leai_docs/planning/global_backlog.md and check - [x] for [REQ-013]]. Type: Task.
+> Files touched: [App.jsx, RunSection.jsx, RunSection.test.jsx]
 
 **Story 1.2: Headless Table Logic (State Fractality) | [MoSCoW: MUST] | [Complexity: MEDIUM]**
 **Business Requirement:** Extract all sorting, searching, and 40-item pagination math into a purely logic-based headless hook.

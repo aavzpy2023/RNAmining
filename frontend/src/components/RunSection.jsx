@@ -1,10 +1,46 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const styles = {
     runButton: { display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', width: '100%', padding: '14px', backgroundColor: '#0284c7', color: 'white', border: 'none', borderRadius: '12px', fontSize: '16px', fontWeight: '600', cursor: 'pointer', transition: 'all 0.2s', boxShadow: '0 4px 6px rgba(2, 132, 199, 0.3)' }
 };
 
-export const RunSection = ({ isRunning, disabled, onClick }) => (
+/**
+ * Safely zips raw sequence data with backend predictions.
+ * @param {string} text Raw FASTA string from file upload
+ * @param {object} apiResult Backend DTO containing prediction matrix
+ * @returns {Array<{id: string, sequence: string, prediction: string, probability: number}>}
+ */
+const createUnifiedData = (text, apiResult) => {
+    const blocks = text.split('>').filter(b => b.trim());
+    const predictions = apiResult?.predictions || [];
+    
+    return blocks.map((block, index) => {
+        const lines = block.split('\n');
+        const id = lines[0].trim();
+        const sequence = lines.slice(1).join('').replace(/\s/g, '');
+        return {
+            id,
+            sequence,
+            prediction: predictions[index]?.classification || 'Unknown',
+            probability: predictions[index]?.probability || 0.0
+        };
+    });
+};
+
+export const RunSection = ({ isRunning, disabled, onClick, result, file }) => {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (result && file && !isRunning) {
+            file.text().then(text => {
+                const unifiedData = createUnifiedData(text, result);
+                navigate('/results', { state: { data: unifiedData } });
+            });
+        }
+    }, [result, file, isRunning, navigate]);
+
+    return (
     <section style={{ textAlign: 'center', marginTop: '16px' }}>
     <button
     style={{
@@ -30,6 +66,7 @@ export const RunSection = ({ isRunning, disabled, onClick }) => (
     Example of results are made available <a href="#" style={{ color: '#38bdf8', textDecoration: 'underline' }}>here</a>.
     </p>
     </section>
-);
+    );
+};
 
 export default RunSection;
