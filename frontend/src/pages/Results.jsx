@@ -4,11 +4,29 @@ import { useFastaExport } from '../hooks/useFastaExport';
 import { useTableLogic } from '../hooks/useTableLogic';
 import { ResultsTable } from '../components/ResultsTable';
 
+const isCodingRecord = (item) => {
+  const lowerId = (item.id || '').toLowerCase();
+  const cls = (item.classification || item.prediction || '').toLowerCase();
+  if (lowerId.includes('cds')) return true;
+  if (lowerId.includes('ncrna')) return false;
+  return cls === 'coding';
+};
+
+const isNonCodingRecord = (item) => {
+  const lowerId = (item.id || '').toLowerCase();
+  const cls = (item.classification || item.prediction || '').toLowerCase();
+  if (lowerId.includes('ncrna')) return true;
+  if (lowerId.includes('cds')) return false;
+  return cls === 'non-coding';
+};
+
 export default function Results() {
   const location = useLocation();
   const data = location.state?.data || [];
   const validData = data.filter(item => Number(item.probability) > 0);
   const hiddenCount = data.length - validData.length;
+  const hasCoding = validData.some(isCodingRecord);
+  const hasNonCoding = validData.some(isNonCodingRecord);
   const tableHandlers = useTableLogic(validData);
   const { exportAll, exportCoding, exportNonCoding } = useFastaExport();
 
@@ -25,13 +43,25 @@ export default function Results() {
     <div style={{ color: '#f8fafc', padding: '20px', minHeight: '100vh', width: '100%', alignSelf: 'flex-start' }}>
       <h2 style={{ marginBottom: '16px' }}>📊 Analysis Results</h2>
       <div style={{ display: 'flex', gap: '12px', marginBottom: '20px' }}>
-        <button onClick={() => exportAll(validData)} style={btnStyle}>
+        <button 
+          onClick={() => exportAll(validData)} 
+          style={{ ...btnStyle, ...(validData.length === 0 ? disabledBtnStyle : {}) }}
+          disabled={validData.length === 0}
+        >
           Export All (FASTA)
         </button>
-        <button onClick={() => exportCoding(validData)} style={btnStyle}>
+        <button 
+          onClick={() => exportCoding(validData)} 
+          style={{ ...btnStyle, ...(!hasCoding ? disabledBtnStyle : {}) }}
+          disabled={!hasCoding}
+        >
           Export Coding (FASTA)
         </button>
-        <button onClick={() => exportNonCoding(validData)} style={btnStyle}>
+        <button 
+          onClick={() => exportNonCoding(validData)} 
+          style={{ ...btnStyle, ...(!hasNonCoding ? disabledBtnStyle : {}) }}
+          disabled={!hasNonCoding}
+        >
           Export Non-Coding (FASTA)
         </button>
       </div>
@@ -59,4 +89,10 @@ export default function Results() {
 const btnStyle = {
   padding: '10px 16px', backgroundColor: '#0284c7', color: 'white',
   border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold'
+};
+
+const disabledBtnStyle = {
+  opacity: 0.4,
+  cursor: 'not-allowed',
+  backgroundColor: '#475569'
 };

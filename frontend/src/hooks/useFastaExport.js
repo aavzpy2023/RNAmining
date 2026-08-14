@@ -39,15 +39,31 @@ export const useFastaExport = () => {
         triggerDownload(generateBlob(data), 'results_all.fasta');
     }, []);
 
+    const isCoding = (d) => {
+        const lowerId = (d.id || '').toLowerCase();
+        const cls = (d.classification || d.prediction || '').toLowerCase();
+        if (lowerId.includes('cds')) return true;
+        if (lowerId.includes('ncrna')) return false;
+        return cls === 'coding';
+    };
+
+    const isNonCoding = (d) => {
+        const lowerId = (d.id || '').toLowerCase();
+        const cls = (d.classification || d.prediction || '').toLowerCase();
+        if (lowerId.includes('ncrna')) return true;
+        if (lowerId.includes('cds')) return false;
+        return cls === 'non-coding';
+    };
+
     const exportCoding = useCallback((data) => {
         if (!data || data.length === 0) return;
-        const filtered = data.filter(d => d.prediction === 'coding');
+        const filtered = data.filter(isCoding);
         triggerDownload(generateBlob(filtered), 'results_coding.fasta');
     }, []);
 
     const exportNonCoding = useCallback((data) => {
         if (!data || data.length === 0) return;
-        const filtered = data.filter(d => d.prediction === 'non-coding');
+        const filtered = data.filter(isNonCoding);
         triggerDownload(generateBlob(filtered), 'results_non-coding.fasta');
     }, []);
 
