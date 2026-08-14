@@ -20,10 +20,11 @@ export const useTableLogic = (initialData = []) => {
         // 1. Sequential Search Filter
         if (search) {
             const lowerSearch = search.toLowerCase();
-            data = data.filter(item => 
-                (item.id && item.id.toLowerCase().includes(lowerSearch)) || 
-                (item.classification && item.classification.toLowerCase().includes(lowerSearch))
-            );
+            data = data.filter(item => {
+                const lowerId = (item.id || '').toLowerCase();
+                const derivedClass = lowerId.includes('ncrna') ? 'non-coding' : (lowerId.includes('cds') ? 'coding' : (item.classification || 'unknown'));
+                return lowerId.includes(lowerSearch) || derivedClass.toLowerCase().includes(lowerSearch);
+            });
         }
 
         // 2. Sequential Sorting

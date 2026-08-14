@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { ResultsTable } from './ResultsTable';
 
 describe('ResultsTable Component', () => {
@@ -19,10 +19,10 @@ describe('ResultsTable Component', () => {
         expect(table).toHaveStyle('table-layout: fixed');
     });
 
-    it('renders classification data and falls back to unknown', () => {
+    it('renders classification data, formats ID, and opens modal', () => {
         const testData = [
-            { id: 'seq1', classification: 'coding', probability: 0.99 },
-            { id: 'seq2' } // Missing classification and probability
+            { id: 'gene:ATMG00950 ncrna extra', probability: 0.99 },
+            { id: 'seq2 cds' } // Will derive 'coding'
         ];
 
         render(
@@ -33,11 +33,17 @@ describe('ResultsTable Component', () => {
             />
         );
         
+        // Derived classifications from IDs
+        expect(screen.getByText('non-coding')).toBeInTheDocument();
         expect(screen.getByText('coding')).toBeInTheDocument();
-        expect(screen.getByText('unknown')).toBeInTheDocument();
         
-        // Probability fallback check for seq2 (0.0000)
-        const zeroProbs = screen.getAllByText('0.0000');
-        expect(zeroProbs.length).toBeGreaterThan(0);
+        // ID Formatted: 'ATMG00950 ncrna'
+        const formattedId = screen.getByText('ATMG00950 ncrna');
+        expect(formattedId).toBeInTheDocument();
+        
+        // Modal click
+        fireEvent.click(formattedId);
+        expect(screen.getByText('Sequence Details')).toBeInTheDocument();
+        expect(screen.getByText('gene:ATMG00950 ncrna extra')).toBeInTheDocument();
     });
 });
