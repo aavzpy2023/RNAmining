@@ -47,10 +47,11 @@ complexity_aggregate: "HARD"
 **Business Requirement:** Implement an atomic headless hook to serialize unified data arrays back into raw FASTA blobs.
 **Story Context Radius:** `{"frontend/src/hooks/useFastaExport.js": ["*"]}`
 **Layered Technical Breakdown:**
-- [ ] [ID-1.4.1] [TESTING/TDE]: [1. Setup Blob and URL mock in Jest/Vitest. 2. Assert `exportCoding` strictly filters out non-coding items before Blob generation. 3. Assert FASTA newline format is exact]. Type: Task.
-- [ ] [ID-1.4.2] [HOOK/GENERATOR]: [1. Create frontend/src/hooks/useFastaExport.js. 2. Write `generateBlob(data)` mapping array to `>id\nseq\n` string. 3. Write explicit JSDoc comments detailing the formatting logic]. Type: Task.
-- [ ] [ID-1.4.3] [HOOK/EXPORTS]: [1. Implement `exportAll(data)`, `exportCoding(data)`, `exportNonCoding(data)` using `generateBlob` and `URL.createObjectURL`. 2. Return an object exposing these 3 methods. 3. Ensure memory cleanup (revokeObjectURL)]. Type: Task.
-- [ ] [ID-1.4.4] [PLANNING/SYNC]: [1. Open leai_docs/planning/roadmap_6_results_page.md and check - [x] for Story 1.4. 2. Open leai_docs/planning/global_backlog.md and check - [x] for [REQ-015]]. Type: Task.
+- [x] [ID-1.4.1] [TESTING/TDE]: [1. Setup Blob and URL mock in Jest/Vitest. 2. Assert `exportCoding` strictly filters out non-coding items before Blob generation. 3. Assert FASTA newline format is exact]. Type: Task.
+- [x] [ID-1.4.2] [HOOK/GENERATOR]: [1. Create frontend/src/hooks/useFastaExport.js. 2. Write `generateBlob(data)` mapping array to `>id\nseq\n` string. 3. Write explicit JSDoc comments detailing the formatting logic]. Type: Task.
+- [x] [ID-1.4.3] [HOOK/EXPORTS]: [1. Implement `exportAll(data)`, `exportCoding(data)`, `exportNonCoding(data)` using `generateBlob` and `URL.createObjectURL`. 2. Return an object exposing these 3 methods. 3. Ensure memory cleanup (revokeObjectURL)]. Type: Task.
+- [x] [ID-1.4.4] [PLANNING/SYNC]: [1. Open leai_docs/planning/roadmap_6_results_page.md and check - [x] for Story 1.4. 2. Open leai_docs/planning/global_backlog.md and check - [x] for [REQ-015]]. Type: Task.
+> Files touched: [useFastaExport.js, useFastaExport.test.js]
 
 **Story 1.5: Results Page Assembly (Dumb Container) | [MoSCoW: MUST] | [Complexity: EASY]**
 **Business Requirement:** Mount the headless hooks and dumb views into a top-level page component handling null-state fallback.
