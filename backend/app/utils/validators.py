@@ -3,6 +3,12 @@ import re
 RNA_DNA_REGEX = r"^[ACGTUacgtu\s]+$"
 
 
+def strict_fasta_check(content: str) -> None:
+    """Throws ValueError if the first line doesn't start with '>'."""
+    lines = content.splitlines()
+    if not lines or not lines[0].startswith(">"):
+        raise ValueError("Invalid FASTA: Missing '>' in the first line.")
+
 def clean_sequence(v: str) -> str:
     """
     Validates and cleans biometric sequences.

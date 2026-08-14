@@ -25,9 +25,9 @@
 
 ## Feature Extraction & Stateful Results (Mode D)
 
-- [ ] [REQ-013] Validate FASTA syntax strictly (throw ValueError on missing >).
-- [ ] [REQ-014] Transform genetic sequences into normalized trinucleotide matrices.
-- [ ] [REQ-015] Normalize 3-mer array by dividing counts by sum.
+- [x] [REQ-013] Validate FASTA syntax strictly (throw ValueError on missing >).
+- [x] [REQ-014] Transform genetic sequences into normalized trinucleotide matrices.
+- [x] [REQ-015] Normalize 3-mer array by dividing counts by sum.
 - [ ] [REQ-016] Wire 3-mer extraction into FastAPI route and output enriched DTO.
 - [x] [REQ-017] Extend DTO schemas with sequence and classifications (primitives).
 - [ ] [REQ-018] Build strictly UI-only /results page to visually render table.

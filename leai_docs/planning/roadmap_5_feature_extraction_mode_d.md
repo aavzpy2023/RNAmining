@@ -33,7 +33,8 @@ EPIC 0: BASE INFRASTRUCTURE & SHARED STATE | [CORE SCHEMAS]
 
 EPIC 1: IN-MEMORY FEATURE EXTRACTION | [BACKEND ISOLATED]
 
-- [ ] Story 1.0: Strict Validation & 3-mer Engine | [MoSCoW: MUST]
+- [x] Story 1.0: Strict Validation & 3-mer Engine | [MoSCoW: MUST]
+  > Files touched: backend/app/utils/validators.py, backend/app/utils/feature_extraction.py
   Business Requirement: Validate FASTA syntax strictly and transform genetic 
   sequences into normalized trinucleotide matrices (<-- REQ-013, REQ-014, REQ-015).
   Story Context Radius: {"backend/app/utils/validators.py": ["*"], 
