@@ -27,10 +27,11 @@ complexity_aggregate: "HARD"
 **Business Requirement:** Extract all sorting, searching, and 40-item pagination math into a purely logic-based headless hook.
 **Story Context Radius:** `{"frontend/src/hooks/useTableLogic.js": ["*"]}`
 **Layered Technical Breakdown:**
-- [ ] [ID-1.2.1] [TESTING/TDE]: [1. Setup `renderHook` mock for `useTableLogic`. 2. Assert pagination strictly returns max 40 items. 3. Assert text search filters items accurately]. Type: Task.
-- [ ] [ID-1.2.2] [HOOK/CORE]: [1. Create frontend/src/hooks/useTableLogic.js. 2. Define `useTableLogic(initialData)` with internal `useState` for search, sort key, and page. 3. Write JSDoc English comments defining the input/output boundaries]. Type: Task.
-- [ ] [ID-1.2.3] [HOOK/MEMOIZATION]: [1. Implement `useMemo` to sequentially apply search filter, then sorting, then pagination slicing. 2. Expose `{ paginatedData, totalPages, currentPage, setPage, setSearch, setSort }`. 3. Export hook]. Type: Task.
-- [ ] [ID-1.2.4] [PLANNING/SYNC]: [1. Open leai_docs/planning/roadmap_6_results_page.md and check - [x] for Story 1.2. 2. Append > Files touched: [useTableLogic.js]]. Type: Task.
+- [x] [ID-1.2.1] [TESTING/TDE]: [1. Setup `renderHook` mock for `useTableLogic`. 2. Assert pagination strictly returns max 40 items. 3. Assert text search filters items accurately]. Type: Task.
+- [x] [ID-1.2.2] [HOOK/CORE]: [1. Create frontend/src/hooks/useTableLogic.js. 2. Define `useTableLogic(initialData)` with internal `useState` for search, sort key, and page. 3. Write JSDoc English comments defining the input/output boundaries]. Type: Task.
+- [x] [ID-1.2.3] [HOOK/MEMOIZATION]: [1. Implement `useMemo` to sequentially apply search filter, then sorting, then pagination slicing. 2. Expose `{ paginatedData, totalPages, currentPage, setPage, setSearch, setSort }`. 3. Export hook]. Type: Task.
+- [x] [ID-1.2.4] [PLANNING/SYNC]: [1. Open leai_docs/planning/roadmap_6_results_page.md and check - [x] for Story 1.2. 2. Append > Files touched: [useTableLogic.js]]. Type: Task.
+> Files touched: [useTableLogic.js, useTableLogic.test.js]
 
 **Story 1.3: Dumb Table View Implementation | [MoSCoW: MUST] | [Complexity: EASY]**
 **Business Requirement:** Build a purely presentational table component consuming the headless logic, strictly in English.
