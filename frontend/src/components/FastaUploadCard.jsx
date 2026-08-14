@@ -217,37 +217,60 @@ export function FastaUploadCard({
         </p>
       </div>
 
-      {isUploading && (
-        <div style={styles.progressBarContainer}>
-          <div style={styles.progressBarFill}></div>
-          <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10 }}>
-            <span style={{ fontSize: '12px', fontWeight: 'bold', color: '#f8fafc', textShadow: '0 1px 2px rgba(0,0,0,0.8)' }}>Uploading...</span>
-          </div>
-        </div>
-      )}
-
-      {file && !isUploading && (
-        <div style={styles.progressBarContainer}>
-          <div style={{ ...styles.progressBarFill, animation: 'none', width: '100%' }}></div>
-          <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10 }}>
-            <span style={{ fontSize: '12px', fontWeight: 'bold', color: '#0f172a' }}>📄 {file.name} ({(file.size / 1024).toFixed(1)} KB) - Complete</span>
-          </div>
-        </div>
-      )}
-
-      {file && !isUploading && (
-        <div style={styles.fileInfo}>
-          <button
-            style={styles.button}
-            onClick={(e) => {
-              e.stopPropagation();
+      <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginTop: '16px' }}>
+        <button
+          style={{
+            ...styles.button,
+            marginTop: 0,
+            whiteSpace: 'nowrap',
+            backgroundColor: file ? '#ef4444' : '#0284c7',
+            height: '38px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px',
+            fontWeight: '600'
+          }}
+          onClick={(e) => {
+            e.stopPropagation();
+            if (file) {
               onClearFile();
-            }}
-          >
-            Remove file
-          </button>
+            } else {
+              inputRef.current?.click();
+            }
+          }}
+        >
+          <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>
+            {file ? 'delete' : 'upload_file'}
+          </span>
+          {file ? 'Remove file' : 'Upload file'}
+        </button>
+
+        <div style={{ flex: 1 }}>
+          {isUploading && (
+            <div style={{ ...styles.progressBarContainer, marginTop: 0 }}>
+              <div style={styles.progressBarFill}></div>
+              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10 }}>
+                <span style={{ fontSize: '12px', fontWeight: 'bold', color: '#f8fafc', textShadow: '0 1px 2px rgba(0,0,0,0.8)' }}>Uploading...</span>
+              </div>
+            </div>
+          )}
+
+          {file && !isUploading && (
+            <div style={{ ...styles.progressBarContainer, marginTop: 0 }}>
+              <div style={{ ...styles.progressBarFill, animation: 'none', width: '100%' }}></div>
+              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10 }}>
+                <span style={{ fontSize: '12px', fontWeight: 'bold', color: '#0f172a' }}>📄 {file.name} ({(file.size / 1024).toFixed(1)} KB) - Complete</span>
+              </div>
+            </div>
+          )}
+
+          {!file && !isUploading && (
+            <div style={{ ...styles.progressBarContainer, marginTop: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <span style={{ fontSize: '12px', color: '#64748b' }}>No file selected</span>
+            </div>
+          )}
         </div>
-      )}
+      </div>
 
       {error && !isUploading && <p style={styles.errorText}>❌ {error}</p>}
 

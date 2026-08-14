@@ -12,8 +12,18 @@ export const useFastaExport = () => {
      * @param {Array} data - Array of unified sequence objects
      * @returns {Blob} Generated FASTA text blob
      */
+    const wrapSequence = (seq, lineLength = 60) => {
+        if (!seq) return '';
+        const cleanSeq = seq.replace(/\s+/g, '');
+        const regex = new RegExp(`.{1,${lineLength}}`, 'g');
+        const chunks = cleanSeq.match(regex);
+        return chunks ? chunks.join('\n') : cleanSeq;
+    };
+
     const generateBlob = (data) => {
-        const fastaText = data.map(d => `>${d.id}\n${d.sequence}`).join('\n') + '\n';
+        const fastaText = data
+            .map(d => `>${d.id}\n${wrapSequence(d.sequence, 60)}`)
+            .join('\n') + '\n';
         return new Blob([fastaText], { type: 'text/plain' });
     };
 
