@@ -28,3 +28,5 @@
 - `runInferenceApi`: API client service posting FASTA bytes and organism to `/api/inference`.
 - `useAnalysisRunner`: Hook binding upload state, organism selection, and API response.
 - `RunButton`: Interactive execution button with loading and disabled states.
+- **React Fractality Pattern (Mode D)**: Strict separation enforced. Headless hooks (`useTableLogic`, `useFastaExport`) handle data math, pagination, and Blob serialization. Views (`ResultsTable`, `Results` page) are purely "dumb" consumers accepting primitive states and callbacks.
+[DECLARE STATE: STATE_EXECUTION]

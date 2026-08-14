@@ -57,8 +57,9 @@ complexity_aggregate: "HARD"
 **Business Requirement:** Mount the headless hooks and dumb views into a top-level page component handling null-state fallback.
 **Story Context Radius:** `{"frontend/src/pages/Results.jsx": ["*"], "frontend/src/components/ResultsTable.jsx": ["read-only"], "frontend/src/hooks/useTableLogic.js": ["read-only"], "frontend/src/hooks/useFastaExport.js": ["read-only"], "skills/context.md": [""]}`
 **Layered Technical Breakdown:**
-- [ ] [ID-1.5.1] [TESTING/TDE]: [1. Mount `Results` page with mock router location. 2. Assert fallback rendering ("No data available. Please run an analysis.") if state is null. 3. Assert exporter buttons trigger hook methods]. Type: Task.
-- [ ] [ID-1.5.2] [ASSEMBLY/MOUNT]: [1. Create frontend/src/pages/Results.jsx. 2. Use `useLocation()` to extract `state.data`. 3. If missing, render English fallback boundary]. Type: Task.
-- [ ] [ID-1.5.3] [ASSEMBLY/WIRING]: [1. Invoke `useTableLogic(data)` and pass outputs to `<ResultsTable />`. 2. Invoke `useFastaExport()` and map the 3 export methods to explicitly labeled English download buttons. 3. Render final view]. Type: Task.
-- [ ] [ID-1.5.4] [DOCUMENTATION/SYNC]: [1. Open skills/context.md. 2. Document the strict Fractality Pattern (Hooks vs Views) established in this epic]. Type: Task.
-- [ ] [ID-1.5.5] [PLANNING/SYNC]: [1. Open leai_docs/planning/roadmap_6_results_page.md and check - [x] for Story 1.5. 2. Validate all Requirements REQ-013 to REQ-016 are checked in global backlog]. Type: Task.
+- [x] [ID-1.5.1] [TESTING/TDE]: [1. Mount `Results` page with mock router location. 2. Assert fallback rendering ("No data available. Please run an analysis.") if state is null. 3. Assert exporter buttons trigger hook methods]. Type: Task.
+- [x] [ID-1.5.2] [ASSEMBLY/MOUNT]: [1. Create frontend/src/pages/Results.jsx. 2. Use `useLocation()` to extract `state.data`. 3. If missing, render English fallback boundary]. Type: Task.
+- [x] [ID-1.5.3] [ASSEMBLY/WIRING]: [1. Invoke `useTableLogic(data)` and pass outputs to `<ResultsTable />`. 2. Invoke `useFastaExport()` and map the 3 export methods to explicitly labeled English download buttons. 3. Render final view]. Type: Task.
+- [x] [ID-1.5.4] [DOCUMENTATION/SYNC]: [1. Open skills/context.md. 2. Document the strict Fractality Pattern (Hooks vs Views) established in this epic]. Type: Task.
+- [x] [ID-1.5.5] [PLANNING/SYNC]: [1. Open leai_docs/planning/roadmap_6_results_page.md and check - [x] for Story 1.5. 2. Validate all Requirements REQ-013 to REQ-016 are checked in global backlog]. Type: Task.
+> Files touched: [Results.jsx, Results.test.jsx, context.md]
