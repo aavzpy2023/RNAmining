@@ -37,10 +37,11 @@ complexity_aggregate: "HARD"
 **Business Requirement:** Build a purely presentational table component consuming the headless logic, strictly in English.
 **Story Context Radius:** `{"frontend/src/components/ResultsTable.jsx": ["*"], "frontend/src/hooks/useTableLogic.js": ["read-only"]}`
 **Layered Technical Breakdown:**
-- [ ] [ID-1.3.1] [TESTING/TDE]: [1. Setup DOM testing with mock props. 2. Assert English headers render: 'Sequence ID', 'Coding Potential', 'Probability'. 3. Assert 40 rows maximum render]. Type: Task.
-- [ ] [ID-1.3.2] [VIEW/RENDER]: [1. Create frontend/src/components/ResultsTable.jsx. 2. Accept `data`, `searchHandlers`, `paginationHandlers` as props. 3. Map over `data` to output `<tr>` elements]. Type: Task.
-- [ ] [ID-1.3.3] [VIEW/CONTROLS]: [1. Inject an `<input>` for search wired to the passed handler. 2. Inject pagination `<button>`s wired to the passed page setter. 3. Ensure all static text is 100% English]. Type: Task.
-- [ ] [ID-1.3.4] [PLANNING/SYNC]: [1. Open leai_docs/planning/roadmap_6_results_page.md and check - [x] for Story 1.3. 2. Open leai_docs/planning/global_backlog.md and check - [x] for [REQ-014], [REQ-016]]. Type: Task.
+- [x] [ID-1.3.1] [TESTING/TDE]: [1. Setup DOM testing with mock props. 2. Assert English headers render: 'Sequence ID', 'Coding Potential', 'Probability'. 3. Assert 40 rows maximum render]. Type: Task.
+- [x] [ID-1.3.2] [VIEW/RENDER]: [1. Create frontend/src/components/ResultsTable.jsx. 2. Accept `data`, `searchHandlers`, `paginationHandlers` as props. 3. Map over `data` to output `<tr>` elements]. Type: Task.
+- [x] [ID-1.3.3] [VIEW/CONTROLS]: [1. Inject an `<input>` for search wired to the passed handler. 2. Inject pagination `<button>`s wired to the passed page setter. 3. Ensure all static text is 100% English]. Type: Task.
+- [x] [ID-1.3.4] [PLANNING/SYNC]: [1. Open leai_docs/planning/roadmap_6_results_page.md and check - [x] for Story 1.3. 2. Open leai_docs/planning/global_backlog.md and check - [x] for [REQ-014], [REQ-016]]. Type: Task.
+> Files touched: [ResultsTable.jsx, ResultsTable.test.jsx]
 
 **Story 1.4: Headless FASTA Blob Exporter | [MoSCoW: MUST] | [Complexity: HARD]**
 **Business Requirement:** Implement an atomic headless hook to serialize unified data arrays back into raw FASTA blobs.
