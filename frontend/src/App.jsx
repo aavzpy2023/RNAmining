@@ -3,6 +3,7 @@ import { useFastaUpload } from './hooks/useFastaUpload';
 import { useOrganismSelect } from './hooks/useOrganismSelect';
 import { FastaUploadCard } from './components/FastaUploadCard';
 import { OrganismCard } from './components/OrganismCard';
+import { RunSection } from './components/RunSection';
 
 // Importación de las páginas desacopladas
 import About from './pages/About';
@@ -94,20 +95,7 @@ const Navbar = ({ currentView, setView }) => {
   );
 };
 
-const RunSection = ({ isRunning, disabled, onClick }) => (
-  <section style={{ textAlign: 'center', marginTop: '16px' }}>
-  <button
-  style={{
-    ...styles.runButton,
-    ...(disabled || isRunning ? { opacity: 0.5, cursor: 'not-allowed' } : {})
-  }}
-  onClick={onClick}
-  disabled={disabled || isRunning}
-  >
-  {isRunning ? 'Running...' : 'Run RNAmining'}
-  </button>
-  </section>
-);
+/* Component imported from ./components/RunSection */
 
 const Footer = () => (
   <footer style={styles.footer}>
