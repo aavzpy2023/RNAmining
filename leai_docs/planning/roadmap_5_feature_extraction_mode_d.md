@@ -50,7 +50,8 @@ EPIC 1: IN-MEMORY FEATURE EXTRACTION | [BACKEND ISOLATED]
   - [ ] [ID-1.0.4] [PLANNING/SYNC]: [1. Sync Roadmap Story 1.0. 2. Sync Backlog 
     REQ-013, REQ-014, REQ-015]. Type: Task.
 
-- [ ] Story 1.1: Inference Engine Boundary Wiring | [MoSCoW: MUST]
+- [x] Story 1.1: Inference Engine Boundary Wiring | [MoSCoW: MUST]
+  > Files touched: backend/main.py, backend/tests/test_inference.py
   Business Requirement: Explicitly wire the 3-mer extraction into the FastAPI 
   inference route and output the enriched DTO (<-- REQ-016).
   Story Context Radius: {"backend/main.py": ["*"], 
