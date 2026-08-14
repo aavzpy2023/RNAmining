@@ -67,7 +67,8 @@ EPIC 1: IN-MEMORY FEATURE EXTRACTION | [BACKEND ISOLATED]
 
 EPIC 2: STATE FRACTAL UI & EXPORT CONTROLLERS | [FRONTEND ISOLATED]
 
-- [ ] Story 2.0: Zip Export & Hook Logic (Pure State) | [MoSCoW: MUST]
+- [x] Story 2.0: Zip Export & Hook Logic (Pure State) | [MoSCoW: MUST]
+  > Files touched: frontend/package.json, frontend/src/hooks/useZipExport.js, frontend/tests/hooks/useZipExport.test.js
   Business Requirement: Implement pure JS functions for ZIP creation and state 
   filtering without any UI coupling (<-- REQ-019, REQ-020, REQ-021).
   Story Context Radius: {"frontend/package.json": ["*"], 
