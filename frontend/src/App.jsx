@@ -147,6 +147,9 @@ function App() {
     <style>{`
       body { margin: 0; padding: 0; background-color: #0f172a; }
       * { box-sizing: border-box; }
+      #nprogress .bar { background: #22c55e !important; }
+      #nprogress .peg { box-shadow: 0 0 10px #22c55e, 0 0 5px #22c55e !important; }
+      .progress-bar { background-color: #22c55e !important; transition: width 0.2s ease !important; }
       `}</style>
       <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 

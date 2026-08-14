@@ -25,8 +25,9 @@ Business Requirement: Eradicate duplicated navigation logic in the UI layer. Ens
 - [x] [x] [ID-1.2.4] [PLANNING/SYNC]: [1. Open leai_docs/planning/roadmap_7_ui_fixes_navigation.md and check - [x] for Story 1.2. 2. Append > Files touched: [list] under the story. 3. Open leai_docs/planning/global_backlog.md and check - [x] for [REQ-023]]. Type: Task.
 > Files touched: frontend/src/components/Routing.test.jsx, frontend/src/components/RunButton.jsx
 
-## - [ ] Story 1.3: [Micro-Surgery] Visual Progress Bar Determinism | [MoSCoW: MUST] | [Complexity: EASY] (<-- REQ-022)
+## - [x] Story 1.3: [Micro-Surgery] Visual Progress Bar Determinism | [MoSCoW: MUST] | [Complexity: EASY] (<-- REQ-022)
 Business Requirement: Force the global/upload progress indicator to bypass all intermediate color transitions (blue) and render strictly in green (#22c55e or equivalent) from 0% to 100%.
-- [ ] [ID-1.3.1] [TESTING/TDE]: [1. Setup CSS parsing mock. 2. Assert global loading bar class or nprogress config does not define a blue hexadecimal or transition]. Type: Task.
-- [ ] [ID-1.3.2] [STYLE/OVERRIDE]: [1. Locate the progress bar library config (e.g., nprogress in App.jsx) or global CSS file (index.css). 2. Inject a rigid CSS override targeting the progress bar class (e.g., #nprogress .bar, .progress-bar). 3. Set background: #22c55e !important and strip multi-color animation keyframes]. Type: Task.
-- [ ] [ID-1.3.3] [PLANNING/SYNC]: [1. Open leai_docs/planning/roadmap_7_ui_fixes_navigation.md and check - [x] for Story 1.3. 2. Append > Files touched: [list] under the story. 3. Open leai_docs/planning/global_backlog.md and check - [x] for [REQ-022]]. Type: Task.
+- [x] [ID-1.3.1] [TESTING/TDE]: [1. Setup CSS parsing mock. 2. Assert global loading bar class or nprogress config does not define a blue hexadecimal or transition]. Type: Task.
+- [x] [ID-1.3.2] [STYLE/OVERRIDE]: [1. Locate the progress bar library config (e.g., nprogress in App.jsx) or global CSS file (index.css). 2. Inject a rigid CSS override targeting the progress bar class (e.g., #nprogress .bar, .progress-bar). 3. Set background: #22c55e !important and strip multi-color animation keyframes]. Type: Task.
+- [x] [ID-1.3.3] [PLANNING/SYNC]: [1. Open leai_docs/planning/roadmap_7_ui_fixes_navigation.md and check - [x] for Story 1.3. 2. Append > Files touched: [list] under the story. 3. Open leai_docs/planning/global_backlog.md and check - [x] for [REQ-022]]. Type: Task.
+> Files touched: frontend/src/App.jsx, frontend/src/components/ProgressStyle.test.jsx
