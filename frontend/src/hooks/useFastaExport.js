@@ -12,6 +12,16 @@ export const useFastaExport = () => {
      * @param {Array} data - Array of unified sequence objects
      * @returns {Blob} Generated FASTA text blob
      */
+    const formatHeader = (headerId) => {
+        if (!headerId) return '';
+        // Locate 'gene:<symbol>' and split immediately after its value
+        const geneRegex = /(gene:\S+)\s+(.+)/;
+        if (geneRegex.test(headerId)) {
+            return headerId.replace(geneRegex, '$1\n$2');
+        }
+        return headerId;
+    };
+
     const wrapSequence = (seq, lineLength = 60) => {
         if (!seq) return '';
         const cleanSeq = seq.replace(/\s+/g, '');
@@ -22,7 +32,7 @@ export const useFastaExport = () => {
 
     const generateBlob = (data) => {
         const fastaText = data
-            .map(d => `>${d.id}\n${wrapSequence(d.sequence, 60)}`)
+            .map(d => `>${formatHeader(d.id)}\n${wrapSequence(d.sequence, 60)}`)
             .join('\n') + '\n';
         return new Blob([fastaText], { type: 'text/plain' });
     };
